@@ -1,6 +1,7 @@
 import { Card } from 'flowbite-react';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../Components/Context/AuthProvider';
 import '../Home/Navbar/Navbar.css'
 import OrderModal from './OrderModal';
@@ -8,6 +9,28 @@ import OrderModal from './OrderModal';
 const SubCategoryCard = ({ item, setProduct }) => {
     const { user } = useContext(AuthContext)
     const { name, img, area, Condition, _id, color, orginal_price, price, rating, createdAt, location, title, types, } = item
+    console.log(_id)
+
+    const handleRepotedUsers = id => {
+        fetch(`http://192.168.1.103:5000/items/report/${id}`, {
+            method: "PUT",
+        })
+        .then(res => res.json())
+        .then(data => {
+
+            console.log(data)
+           if(data.acknowledged){
+            toast("Reported to admin", {
+                position: toast.POSITION.TOP_CENTER,
+              });
+          
+         
+        }
+       
+      
+            })
+    }
+
 
     return (
         <div>
@@ -17,8 +40,11 @@ const SubCategoryCard = ({ item, setProduct }) => {
                 >
                     <div className='max-w-sm max-h-sm'>
                         <img className=' m-auto rounded-xl w-1/2 mb-2 max- h-1/4' src={img} alt="" />
-                        <button className='btn btn-xs btn-secondary'>Report to Admin</button>
-                        <a href="https://www.flaticon.com/free-icons/wishlist" title="wishlist icons"></a>
+                        <div className='flex  justify-between '>
+                        <button  onClick={() => handleRepotedUsers(_id)} className='btn btn-xs btn-secondary'>Report to Admin</button>
+                        <button><img className=' hover:bg-gray-300 m-auto rounded-xl w-5 h-5 mb-2 ' src='https://i.ibb.co/SX8fMMk/heart.png' alt="" /></button>
+                        </div>
+                  
                     </div>
                     <Link href="#">
                         <h5 className="text-xl mb-2 font-semibold tracking-tight text-gray-900 dark:text-white">

@@ -40,6 +40,7 @@ const DashboardLayoyt = () => {
                   
                    <li ><Link to='/dashboard/allbuyer'> All Buyer</Link></li>
                    <li ><Link to='/dashboard/allseller'> All Seller</Link></li>
+                   <li ><Link to='/dashboard/reported'> Reported Items</Link></li>
                   
                   
                   </>

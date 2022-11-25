@@ -18,6 +18,7 @@ import DashboardLayoyt from '../Components/Main/DashboardLayoyt';
 import AllSeller from '../Pages/AllSeller';
 import AdminRoute from './AdminRoute';
 import AllBuyer from '../Pages/AllBuyer';
+import ReportedItem from '../Pages/ReportedItem';
  
 export const Routes = createBrowserRouter([
     {
@@ -87,6 +88,11 @@ export const Routes = createBrowserRouter([
             {
                 path : '/dashboard/allbuyer',
                 element: <AdminRoute><AllBuyer></AllBuyer></AdminRoute>,
+                loader: () => fetch('http://192.168.1.103:5000/users'),
+            },
+            {
+                path : '/dashboard/reported',
+                element: <AdminRoute><ReportedItem></ReportedItem></AdminRoute>,
                 loader: () => fetch('http://192.168.1.103:5000/users'),
             }
         ]
