@@ -14,15 +14,13 @@ const Main = () => {
     <div>
       <div className=" min-h-screen">
         <Navbar1></Navbar1>
-
         <Outlet>
-            {/* <div className="h-screen"></div> */}
         </Outlet>
       </div>
 
       <div>
 
-    <PageFooter></PageFooter>
+        <PageFooter></PageFooter>
 
       </div>
     </div>

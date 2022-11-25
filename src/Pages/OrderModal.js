@@ -25,15 +25,15 @@ const OrderModal = ({ item, refetch }) => {
 
         const order = {
             title, name, img, displayName, createdDate,
-            price, photoURL, types, location, color, orginal_price,
-            createdAt: new Date().toISOString(),
+            price, photoURL, types, location, color, orginal_price, 
+            createdAt: new Date().toISOString(), email, 
         }
         console.log(order)
 
 
 
 
-        fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/orders`, {
+        fetch(`http://192.168.1.103:5000/orders`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -92,7 +92,7 @@ const OrderModal = ({ item, refetch }) => {
                         <input type="text" name='title' disabled defaultValue={title} className="input hidden input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
                         <input type="text" name='location' disabled defaultValue= {location}  className="input input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
                         <input type="text" name='area'  defaultValue= {area}  className="input input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
-                        <input type="text" name='displayName' defaultValue={user?.uid? user.displayName : 'Type Your name' } className="input input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
+                        <input type="text" name='displayName' defaultValue={user?.displayName } className="input input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
                         <input type="text" name='mobile' defaultValue={'+880 '} className="input input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
 
 

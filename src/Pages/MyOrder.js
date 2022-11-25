@@ -1,142 +1,102 @@
 import { Table } from 'flowbite-react';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../Components/Context/AuthProvider';
+import Loading from '../Components/Loading';
 
 const MyOrder = () => {
+    const [orders, setOrders] = useState();
+    const { user, logOut, } = useContext(AuthContext)
+    const [loader, setLoader] = useState(true)
+    console.log(orders)
+
+    useEffect(() => {
+        fetch(`http://192.168.1.103:5000/orders?email=${user?.email}`, {
+            // headers: {
+            //     authorization: `bearer ${localStorage.getItem('token')}`
+            // }
+
+        })
+            .then(res => {
+                // if (res.status === 401 || res.status === 403) {
+                //     logOut()
+                // }
+                return res.json()
+
+            })
+            .then(data => {
+                // setLoading(false);
+                setOrders(data)
+                setLoader(false)
+            })
+
+    }, [user?.email])
+
     return (
         <div className='mx-10 my-8'>
-            <Table striped={true}>
-                <Table.Head>
-                    <Table.HeadCell>
-                        Product name
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Color
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Category
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Price
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        <span className="sr-only">
-                            Edit
-                        </span>
-                    </Table.HeadCell>
-                </Table.Head>
-                <Table.Body className="divide-y">
-                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                        <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                            Apple MacBook Pro 17"
-                        </Table.Cell>
-                        <Table.Cell>
-                            Sliver
-                        </Table.Cell>
-                        <Table.Cell>
-                            Laptop
-                        </Table.Cell>
-                        <Table.Cell>
-                            $2999
-                        </Table.Cell>
-                        <Table.Cell>
-                            <a
-                                href="/tables"
-                                className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                            >
-                                Edit
-                            </a>
-                        </Table.Cell>
-                    </Table.Row>
-                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                        <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                            Microsoft Surface Pro
-                        </Table.Cell>
-                        <Table.Cell>
-                            White
-                        </Table.Cell>
-                        <Table.Cell>
-                            Laptop PC
-                        </Table.Cell>
-                        <Table.Cell>
-                            $1999
-                        </Table.Cell>
-                        <Table.Cell>
-                            <a
-                                href="/tables"
-                                className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                            >
-                                Edit
-                            </a>
-                        </Table.Cell>
-                    </Table.Row>
-                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                        <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                            Magic Mouse 2
-                        </Table.Cell>
-                        <Table.Cell>
-                            Black
-                        </Table.Cell>
-                        <Table.Cell>
-                            Accessories
-                        </Table.Cell>
-                        <Table.Cell>
-                            $99
-                        </Table.Cell>
-                        <Table.Cell>
-                            <a
-                                href="/tables"
-                                className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                            >
-                                Edit
-                            </a>
-                        </Table.Cell>
-                    </Table.Row>
-                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                        <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                            Google Pixel Phone
-                        </Table.Cell>
-                        <Table.Cell>
-                            Gray
-                        </Table.Cell>
-                        <Table.Cell>
-                            Phone
-                        </Table.Cell>
-                        <Table.Cell>
-                            $799
-                        </Table.Cell>
-                        <Table.Cell>
-                            <a
-                                href="/tables"
-                                className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                            >
-                                Edit
-                            </a>
-                        </Table.Cell>
-                    </Table.Row>
-                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                        <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                            Apple Watch 5
-                        </Table.Cell>
-                        <Table.Cell>
-                            Red
-                        </Table.Cell>
-                        <Table.Cell>
-                            Wearables
-                        </Table.Cell>
-                        <Table.Cell>
-                            $999
-                        </Table.Cell>
-                        <Table.Cell>
-                            <a
-                                href="/tables"
-                                className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                            >
-                                Edit
-                            </a>
-                        </Table.Cell>
-                    </Table.Row>
-                </Table.Body>
-            </Table>
+            {
+                loader ? (
+                    <Loading></Loading>
+                ) : (
+                    <Table striped={true}>
+                        <Table.Head>
+                            <Table.HeadCell>
+                                image
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                item name
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                Color
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                Category
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                Price
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                edit
+                                <span className="sr-only text-red-500">
+                                    Edit
+                                </span>
+                            </Table.HeadCell>
+                        </Table.Head>
+                        {
+                            orders?.map(order => <Table.Body className="divide-y">
+                                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900  dark:text-white">
+                                        <img className='rounded-full w-10 h-10 ' src={order.img} alt="" />
+                                    </Table.Cell>
+                                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                        {order.title}
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        {order.color}
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        {order.types}
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        {order.price}
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        <a
+                                            href="/tables"
+                                            className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+                                        >
+                                            Edit
+                                        </a>
+                                    </Table.Cell>
+                                </Table.Row>
+
+
+
+
+                            </Table.Body>)
+                        }
+                    </Table>
+                )
+            }
         </div>
     );
 };

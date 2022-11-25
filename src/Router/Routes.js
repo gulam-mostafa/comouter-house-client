@@ -13,6 +13,8 @@ import { Button } from 'flowbite-react';
 import SubCategory from '../Pages/SubCategory';
 import Dashboard from '../Pages/Dashboard';
 import MyOrder from '../Pages/MyOrder';
+import PageNotFound from '../Components/PageNotFound';
+import DashboardLayoyt from '../Components/Main/DashboardLayoyt';
  
 export const Routes = createBrowserRouter([
     {
@@ -22,12 +24,12 @@ export const Routes = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: ({ params }) => fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/items/${params.id}`)
+                loader: ({ params }) => fetch(`http://192.168.1.103:5000/items/${params.id}`)
             },
             {
                 path: '/home',
                 element: <Home></Home>,
-                loader: () => fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/category'),
+                loader: () => fetch('http://192.168.1.103:5000/category'),
             },
             {
                 path: '/login',
@@ -48,12 +50,9 @@ export const Routes = createBrowserRouter([
             {
                 path: '/subcategory/:id',
                 element: <SubCategory></SubCategory>,
-                loader: ({ params }) => fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/items/${params.id}`)
+                loader: ({ params }) => fetch(`http://192.168.1.103:5000/items/${params.id}`)
             },
-            {
-                path: '/dashboard',
-                element: <Dashboard></Dashboard>
-            },
+          
             {
                 path: '/myorder',
                 element: <MyOrder></MyOrder>
@@ -63,6 +62,20 @@ export const Routes = createBrowserRouter([
     }
     ,{
         path: '*',
-        element: (<p className='w-1/2 mx-auto my-auto ' >not found page <Link className='btn' to='/'>Home</Link></p>)
+        element: <PageNotFound></PageNotFound>
+    },
+    {
+        path: '/dashboard',
+        element: <PriveteRouter><DashboardLayoyt></DashboardLayoyt></PriveteRouter>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>
+            },
+            {
+                path : '/dashboard/myorder',
+                element: <MyOrder></MyOrder>
+            }
+        ]
     }
 ])

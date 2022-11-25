@@ -46,6 +46,8 @@ const Navbar1 = () => {
             className="mr-6 h-14  hidden md:block "
             alt="Logo"
           />
+
+
         </Navbar.Brand>
         <div className="flex md:order-2">
           {user?.uid ? (
@@ -70,7 +72,7 @@ const Navbar1 = () => {
                 ) : (
                   <Avatar
                     alt="User settings"
-                    img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                    img="https://i.ibb.co/YWyS5Mj/avatar.png"
                     rounded
                     className="w-10 h-10 rounded-full"
                   />

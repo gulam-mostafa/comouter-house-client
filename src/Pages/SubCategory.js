@@ -24,7 +24,7 @@ const Subitem = () => {
 
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/items/${types}`)
+        fetch(`http://192.168.1.103:5000/items/${types}`)
             .then(res => res.json())
             .then(data => {
                 setItems(data)

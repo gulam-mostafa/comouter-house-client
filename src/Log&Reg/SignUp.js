@@ -16,15 +16,19 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   const location = useLocation();
+  const [createUserEmail, setCreateUserEmail] = useState('')
+
   const from = location.state?.from?.pathname || "/";
   const googleProvider = new GoogleAuthProvider()
 
   const [termsAccepted, setTermsAccepted] = useState(false);
-  const [imageURL, setImage] = useState()
+ 
   // console.log(termsAccepted)
   const termsAndCondition = (event) => {
     setTermsAccepted(event.target.checked);
   };
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
@@ -32,9 +36,10 @@ const SignUp = () => {
     const email = form.email.value;
     const password2 = form.password2.value;
     const password = form.password.value;
+    const account = event.target.selectOption.value;
     const image = form.photo.files[0];
     setLoading(true)
-    console.log(name, image, email, password, password2);
+    console.log(name, image, email, password, password2, account);
 
     const formData = new FormData()
     formData.append('image', image)
@@ -47,19 +52,28 @@ const SignUp = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
-        console.log(data.data.display_url)
-
         createUser(email, password)
           .then((result) => {
-
-            console.log(name)
-            const currentUser = { displayName: name, photoURL: data.data.display_url }
+            const currentUser = { displayName: name, photoURL: data?.data?.display_url }
             updateUserProfile(currentUser)
+            const users = { name, email, password, account };
+            fetch('http://192.168.1.103:5000/users', {
+              method: 'POST',
+              headers: {
+                "content-type": "application/json"},
+              body: JSON.stringify(users,)
+            })
+              .then(res => res.json())
+              .then(data => {
+                setCreateUserEmail(email)
+              })
+              .then(() => {
+                // navigate('/home')
+              })
               .catch(err => console.log(err))
-
             const user = result.user;
             console.log(user)
+            setLoading(false)
             setError("");
             if (user.uid) {
               toast("Registration successful", {
@@ -72,11 +86,10 @@ const SignUp = () => {
           .catch((e) => {
             console.log(e);
             setError(e.message);
+            setLoading(false)
             // setLoading(false)
-
           });
-      }
-      )
+        })
       .catch(err => console.log(err))
     // setLoading(false)
     if (password !== password2) {
@@ -130,26 +143,19 @@ const SignUp = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user
-
         if (user.uid) {
           toast("Login successful", {
             position: toast.POSITION.TOP_CENTER,
           });
           navigate(from, { replace: true });
         }
-
       })
-
-
       .catch((error) => {
 
         setError(error.message)
         setLoading(false)
       })
-
   }
-
-
   return (
     <div className="md:mx-6">
       <div className="w-full justify-around my-8 lg:flex">
@@ -160,7 +166,6 @@ const SignUp = () => {
             alt=""
           />
         </div>
-
         <div className=" bg-red-5 md:px-10 px-4 py-4 my-8 lg:w-4/5">
           <h1 className="text-black text-5xl font-bold mb-5 text-center ">Sign Up</h1>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -207,6 +212,14 @@ const SignUp = () => {
                 name="photo"
               ></input>
             </div>
+            <div>
+              <p className="mb-2 block">Account Types</p>
+              <select name='selectOption' required className="select select-info w-full max-w-xs">
+                <option name='buyer' value={'buyer'}>Buyer</option>
+                <option name='seller' value={'seller'}>Seller</option>
+
+              </select>
+            </div>
 
             {/* password 1  */}
             <div>
@@ -238,8 +251,6 @@ const SignUp = () => {
             {/* Error show  */}
             <p className="text-red-500">{error.slice(9)}</p>
             {/* check box / mark  */}
-
-
             <div className="flex items-center gap-2">
               <Checkbox
                 onClick={termsAndCondition}
@@ -262,11 +273,10 @@ const SignUp = () => {
                 Login
               </Link>
             </p>
-
             {
               loading ?
                 (
-                 <div className="text-center m-auto "> <Loading></Loading></div>
+                  <div className="text-center m-auto "> <Loading></Loading></div>
                 )
                 :
                 (

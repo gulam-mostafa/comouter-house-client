@@ -3,7 +3,7 @@ import React from 'react';
 
 const Loading = () => {
     return (
-        <div>
+        <div className='text-center flex justify-center '>
               <Spinner
     color="pink"
     aria-label="Pink spinner example"
