@@ -16,6 +16,8 @@ import MyOrder from '../Pages/MyOrder';
 import PageNotFound from '../Components/PageNotFound';
 import DashboardLayoyt from '../Components/Main/DashboardLayoyt';
 import AllSeller from '../Pages/AllSeller';
+import AdminRoute from './AdminRoute';
+import AllBuyer from '../Pages/AllBuyer';
  
 export const Routes = createBrowserRouter([
     {
@@ -71,7 +73,7 @@ export const Routes = createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
-                element: <Dashboard></Dashboard>
+                element: <MyOrder></MyOrder>
             },
             {
                 path : '/dashboard/myorder',
@@ -79,7 +81,12 @@ export const Routes = createBrowserRouter([
             },
             {
                 path : '/dashboard/allseller',
-                element: <AllSeller></AllSeller>,
+                element: <AdminRoute><AllSeller></AllSeller></AdminRoute>,
+                loader: () => fetch('http://192.168.1.103:5000/users'),
+            },
+            {
+                path : '/dashboard/allbuyer',
+                element: <AdminRoute><AllBuyer></AllBuyer></AdminRoute>,
                 loader: () => fetch('http://192.168.1.103:5000/users'),
             }
         ]

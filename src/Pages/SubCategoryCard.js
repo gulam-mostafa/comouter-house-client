@@ -17,6 +17,8 @@ const SubCategoryCard = ({ item, setProduct }) => {
                 >
                     <div className='max-w-sm max-h-sm'>
                         <img className=' m-auto rounded-xl w-1/2 mb-2 max- h-1/4' src={img} alt="" />
+                        <button className='btn btn-xs btn-secondary'>Report to Admin</button>
+                        <a href="https://www.flaticon.com/free-icons/wishlist" title="wishlist icons"></a>
                     </div>
                     <Link href="#">
                         <h5 className="text-xl mb-2 font-semibold tracking-tight text-gray-900 dark:text-white">
@@ -25,7 +27,7 @@ const SubCategoryCard = ({ item, setProduct }) => {
                     </Link>
                     <Link >
                         <p className="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
-                            <small>Sale for Nayem</small>
+                            <small>Sale for {user?.displayName}</small>
                         </p>
                         <p className="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
                             <small>Location {location}, {area}</small>
@@ -66,10 +68,10 @@ const SubCategoryCard = ({ item, setProduct }) => {
 
                         <div className="">
                             <label
-                            htmlFor="Add-modal"
-                             className="btn btn-primary bgColor textColor "
-                             onClick={() => setProduct(item)}
-                             >Buy</label>
+                                htmlFor="Add-modal"
+                                className="btn btn-primary bgColor textColor "
+                                onClick={() => setProduct(item)}
+                            >Buy</label>
 
                         </div>
 

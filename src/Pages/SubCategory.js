@@ -10,6 +10,8 @@ import SubCategoryCard from './SubCategoryCard';
 
 const Subitem = () => {
 
+
+
     const selectedItems = useLoaderData()
     const types = selectedItems[0].types
     // console.log(selectedItems.length)

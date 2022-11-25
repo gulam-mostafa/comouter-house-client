@@ -1,90 +1,75 @@
+import React from 'react';
+import { useLoaderData } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { Table } from 'flowbite-react';
-import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../Components/Context/AuthProvider';
-import Loading from '../Components/Loading';
 
-const MyOrder = () => {
-    const [orders, setOrders] = useState();
-    const { user, logOut, } = useContext(AuthContext)
-    const [loader, setLoader] = useState(true)
-    // console.log(orders.length)
-
-    useEffect(() => {
-        fetch(`http://192.168.1.103:5000/orders?email=${user?.email}`, {
-            // headers: {
-            //     authorization: `bearer ${localStorage.getItem('token')}`
-            // }
-
+const AllBuyer = () => {
+    const buyerUser = useLoaderData()
+    const allbuyer= buyerUser[0].account
+    
+   
+  
+    const {data: users = [] , refetch} = useQuery({
+        queryKey: ['users'],
+       
+        queryFn: async() =>{
+            const res = await fetch(`http://192.168.1.103:5000/users?account=buyer`);
+            const data = await res.json();
+          
+            return data;    }
         })
-            .then(res => {
-                // if (res.status === 401 || res.status === 403) {
-                //     logOut()
-                // }
-                return res.json()
-
-            })
-            .then(data => {
-                // setLoading(false);
-                setOrders(data)
-                setLoader(false)
-            })
-
-    }, [user?.email])
-
+console.log(users)
     return (
-        <div className='mx-10 my-8'>
-            {
-                loader ? (
-                    <Loading></Loading>
-                ) : (
-                    <Table striped={true}>
+        <div>
+            <div>
+            <Table striped={true}>
                         <Table.Head>
                             <Table.HeadCell>
                                 image
                             </Table.HeadCell>
                             <Table.HeadCell>
-                                item name
+                                 name
                             </Table.HeadCell>
                             <Table.HeadCell>
-                                Color
+                                email
                             </Table.HeadCell>
                             <Table.HeadCell>
-                                Category
+                                join date
                             </Table.HeadCell>
                             <Table.HeadCell>
-                                Price
+                                types
                             </Table.HeadCell>
                             <Table.HeadCell>
-                                edit
+                                delete
                                 <span className="sr-only text-red-500">
                                     Edit
                                 </span>
                             </Table.HeadCell>
                         </Table.Head>
                         {
-                            orders?.map(order => <Table.Body className="divide-y" key={order._id}>
-                                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                            users?.map(buyer => <Table.Body className="divide-y" key={buyer._id}>
+                                <Table.Row className="bg-white dark:bbuyer-gray-700 dark:bg-gray-800">
                                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900  dark:text-white">
-                                        <img className='rounded-full w-10 h-10 ' src={order.img} alt="" />
+                                        <img className='rounded-full w-10 h-10 ' src={buyer.photoURL} alt="" />
                                     </Table.Cell>
                                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                        {order.title}
+                                        {buyer.name}
                                     </Table.Cell>
                                     <Table.Cell>
-                                        {order.color}
+                                        {buyer.email}
                                     </Table.Cell>
                                     <Table.Cell>
-                                        {order.types}
+                                        {buyer.createdAt.slice(0,-14)}
                                     </Table.Cell>
                                     <Table.Cell>
-                                        {order.price}
+                                        {buyer.account}
                                     </Table.Cell>
                                     <Table.Cell>
                                         <a
                                             href="/tables"
                                             className="font-medium text-blue-600 hover:underline dark:text-blue-500"
                                         >
-                                            Edit
+                                           delete
                                         </a>
                                     </Table.Cell>
                                 </Table.Row>
@@ -95,10 +80,9 @@ const MyOrder = () => {
                             </Table.Body>)
                         }
                     </Table>
-                )
-            }
+            </div>
         </div>
     );
 };
 
-export default MyOrder;
+export default AllBuyer;

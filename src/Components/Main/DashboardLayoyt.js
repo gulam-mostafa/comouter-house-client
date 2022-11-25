@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import Navbar1 from '../../Home/Navbar/Navbar1';
+import { AuthContext } from '../Context/AuthProvider';
+import useAdmin from '../Hooks/useAdmin';
 
 const DashboardLayoyt = () => {
+  const {user} = useContext(AuthContext)
+  const [isAdmin] = useAdmin(user?.email)
+  console.log(isAdmin, user.email)
     return (
         <div>
         <Navbar1></Navbar1>
@@ -28,7 +33,19 @@ const DashboardLayoyt = () => {
                   { 
                  <>
                   <li ><Link to='/dashboard/myorder'> My Order</Link></li>
-                  <li ><Link to='/dashboard/allseller'> All Seller</Link></li>
+
+
+                 {
+                  isAdmin && <> 
+                  
+                   <li ><Link to='/dashboard/allbuyer'> All Buyer</Link></li>
+                   <li ><Link to='/dashboard/allseller'> All Seller</Link></li>
+                  
+                  
+                  </>
+                 }
+
+
                   <li ><Link to='/dashboard/'>My Sell Post</Link></li>
                   <li ><Link to='/dashboard/'>My Sell Post</Link></li>
                  </>

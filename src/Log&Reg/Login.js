@@ -101,11 +101,21 @@ const Login = () => {
 
     console.log(userEmail);
 
-    forgotPassword(userEmail).then(() => {
+    forgotPassword(userEmail)
+    .then(() => {
+      setError('')
       toast("reset mail sent. Check Your mail box", {
         position: toast.POSITION.TOP_CENTER,
-      });
+       
+      } 
+      
+      );
+      
+    }) 
+    .catch((error) => {
+      setError(error.message);
     });
+    ;
   };
 
   return (
