@@ -63,7 +63,7 @@ const Navbar1 = () => {
               >
                 {user?.photoURL ? (
                   <img
-                    className=" rounded-full mx-auto"
+                    className=" rounded-full mx-auto  h-20 w-20 "
                     src={user?.photoURL}
                     alt=""
                   />
@@ -72,6 +72,7 @@ const Navbar1 = () => {
                     alt="User settings"
                     img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                     rounded
+                    className="w-10 h-10 rounded-full"
                   />
                 )}
 
