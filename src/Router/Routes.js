@@ -22,12 +22,12 @@ export const Routes = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: ({ params }) => fetch(`http://192.168.1.103:5000/items/${params.id}`)
+                loader: ({ params }) => fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/items/${params.id}`)
             },
             {
                 path: '/home',
                 element: <Home></Home>,
-                loader: () => fetch('http://192.168.1.103:5000/category'),
+                loader: () => fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/category'),
             },
             {
                 path: '/login',
@@ -48,7 +48,7 @@ export const Routes = createBrowserRouter([
             {
                 path: '/subcategory/:id',
                 element: <SubCategory></SubCategory>,
-                loader: ({ params }) => fetch(`http://192.168.1.103:5000/items/${params.id}`)
+                loader: ({ params }) => fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/items/${params.id}`)
             },
             {
                 path: '/dashboard',

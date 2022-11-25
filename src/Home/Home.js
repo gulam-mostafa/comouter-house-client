@@ -16,7 +16,7 @@ const Home = ({ items }) => {
     // console.log(categorys)
 
     useEffect(() => {
-        fetch('http://192.168.1.103:5000/category')
+        fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/category')
             .then(res => res.json())
             .then(data => {
                 setCategory(data)

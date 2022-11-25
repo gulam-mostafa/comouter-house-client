@@ -33,7 +33,7 @@ const SignUp = () => {
     const password2 = form.password2.value;
     const password = form.password.value;
     const image = form.photo.files[0];
-
+    setLoading(true)
     console.log(name, image, email, password, password2);
 
     const formData = new FormData()
@@ -72,13 +72,13 @@ const SignUp = () => {
           .catch((e) => {
             console.log(e);
             setError(e.message);
-            setLoading(false)
+            // setLoading(false)
 
           });
       }
       )
       .catch(err => console.log(err))
-    setLoading(false)
+    // setLoading(false)
     if (password !== password2) {
       setError('password Password not matched')
       return
@@ -266,12 +266,12 @@ const SignUp = () => {
             {
               loading ?
                 (
-                  <Loading></Loading>
+                 <div className="text-center m-auto "> <Loading></Loading></div>
                 )
                 :
                 (
                   <Button className="lg:w-1/2 lg:mx-auto" disabled={!termsAccepted} type="submit">
-                    Log in
+                    Sign Up
                   </Button>
                 )
             }
