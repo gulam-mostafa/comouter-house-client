@@ -1,0 +1,60 @@
+
+
+[
+    {
+        
+        "id": "01",
+        "total": "11",
+        "types": "Gaming_pc",
+        "serviceId": "1",
+        "title": "Gaming Pc",
+        "name": "Best Gaming PC",
+        "img": "https://i.ibb.co/7jTHXRS/air-condition.jpg",
+        "price": "36.00",
+        "rating": "4.7",
+        "description": " no more waiting around all day for an HVAC technician to arrive at your home!"
+       
+    },
+    {
+        
+        "id": "02",
+        "total": "41",
+        "types": "Brand_pc",
+        "serviceId": "2",
+        "title": "Brand Pc",
+        "name": "Best Brand PC",
+        "img": "https://i.ibb.co/7jTHXRS/air-condition.jpg",
+        "price": "36.00",
+        "rating": "4.7",
+        "description": "we’ll pay you back. With us, there’s no more waiting around all day for an HVAC technician to arrive at your home!"
+       
+    },
+    {
+        
+        "id": "03",
+        "total": "17",
+        "types": "Official_pc",
+        "serviceId": "3",
+        "title": "Official Computer",
+        "name": "Official Computer",
+        "img": "https://i.ibb.co/7jTHXRS/air-condition.jpg",
+        "price": "36.00",
+        "rating": "4.7",
+        "description": "we’ll pay you back. With us, there’s no more waiting around all day for an HVAC technician to arrive at your home!"
+       
+    },
+    {
+        
+        "id": "04",
+        "total": "11",
+        "types": "Mini_pc",
+        "serviceId": "4",
+        "title": "Mini Computer",
+        "name": "Mini/ Pocket / Computer",
+        "img": "https://i.ibb.co/7jTHXRS/air-condition.jpg",
+        "price": "36.00",
+        "rating": "4.7",
+        "description": "we’ll pay you back. With us, there’s no more waiting around all day for an HVAC technician to arrive at your home!"
+       
+    }
+]

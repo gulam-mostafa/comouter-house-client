@@ -1,0 +1,109 @@
+
+
+[
+    {
+        
+        "id": "01",
+        "location": "Dhaka",
+        "area": "Mirpur",
+        "Condition": "Used",
+        "stock": "available",
+        "color": "black",
+        "orginal_price": "566",
+        "createdAt": "2022-11-13T13:43:03.812Z",
+        "total": "11",
+        "types": "Gaming_pc",
+        "serviceId": "1",
+        "title": "High Graphics Pc",
+        "name": "Best Gaming PC",
+        "img": "https://i.ibb.co/DgvKk5n/desktop.jpg",
+        "price": "36.00",
+        "rating": "4.7",
+        "description": " no more waiting around all day for an HVAC technician to arrive at your home!"
+       
+    },
+    {
+        
+        "id": "01",
+        "location": "Dhaka",
+        "area": "Farmgate",
+        "Condition": "Used",
+        "stock": "available",
+        "color": "black",
+        "orginal_price": "566",
+        "createdAt": "2022-11-13T13:43:03.812Z",
+        "total": "11",
+        "types": "Gaming_pc",
+        "serviceId": "1",
+        "title": "core i7, 16gb ram, intel cpu",
+        "name": "Best Gaming PC",
+        "img": "https://i.ibb.co/DgvKk5n/desktop.jpg",
+        "price": "36.00",
+        "rating": "4.7",
+        "description": " no more waiting around all day for an HVAC technician to arrive at your home!"
+       
+    },
+    {
+        
+        "id": "02",
+        "location": "Dhaka",
+        "area": "Panthapath",
+        "Condition": "Used",
+        "stock": "available",
+        "color": "black",
+        "orginal_price": "566",
+        "createdAt": "2022-11-13T13:43:03.812Z",
+        "total": "41",
+        "types": "Brand_pc",
+        "serviceId": "2",
+        "title": "Asus Pc",
+        "name": "Best Brand PC",
+        "img": "https://i.ibb.co/4VVDJVS/computer-ram.jpg",
+        "price": "36.00",
+        "rating": "4.7",
+        "description": "we’ll pay you back. With us, there’s no more waiting around all day for an HVAC technician to arrive at your home!"
+       
+    },
+    {
+        
+        "id": "03",
+        "location": "Gazipur",
+        "area": "joydebpur",
+        "Condition": "Used",
+        "stock": "available",
+        "color": "black",
+        "orginal_price": "566",
+        "createdAt": "2022-11-13T13:43:03.812Z",
+        "total": "17",
+        "types": "Official_pc",
+        "serviceId": "3",
+        "title": "Gigabyte HM81, ram-8gb, intel cpu",
+        "name": "Official Computer",
+        "img": "https://i.ibb.co/9Hpjq2D/computer-coloer.jpg",
+        "price": "36.00",
+        "rating": "4.7",
+        "description": "we’ll pay you back. With us, there’s no more waiting around all day for an HVAC technician to arrive at your home!"
+       
+    },
+    {
+        
+        "id": "04",
+        "location": "Mymonsingh",
+        "area": "Trishal",
+        "Condition": "Used",
+        "stock": "available",
+        "color": "black",
+        "orginal_price": "566",
+        "createdAt": "2022-11-13T13:43:03.812Z",
+        "total": "11",
+        "types": "Mini_pc",
+        "serviceId": "4",
+        "title": "Raspberry pi",
+        "name": "Mini/ Pocket / Computer",
+        "img": "https://i.ibb.co/RQGD7HP/computer-body.jpg",
+        "price": "36.00",
+        "rating": "4.7",
+        "description": "we’ll pay you back. With us, there’s no more waiting around all day for an HVAC technician to arrive at your home!"
+       
+    }
+]
