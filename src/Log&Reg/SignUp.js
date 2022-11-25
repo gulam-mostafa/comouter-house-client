@@ -56,7 +56,8 @@ const SignUp = () => {
           .then((result) => {
             const currentUser = { displayName: name, photoURL: data?.data?.display_url }
             updateUserProfile(currentUser)
-            const users = { name, email, password, account };
+            const users = { name, email, password, account ,  createdAt: new Date().toISOString() , photoURL: data?.data?.display_url } ;
+
             fetch('http://192.168.1.103:5000/users', {
               method: 'POST',
               headers: {

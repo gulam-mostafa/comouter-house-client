@@ -15,6 +15,7 @@ import Dashboard from '../Pages/Dashboard';
 import MyOrder from '../Pages/MyOrder';
 import PageNotFound from '../Components/PageNotFound';
 import DashboardLayoyt from '../Components/Main/DashboardLayoyt';
+import AllSeller from '../Pages/AllSeller';
  
 export const Routes = createBrowserRouter([
     {
@@ -75,6 +76,11 @@ export const Routes = createBrowserRouter([
             {
                 path : '/dashboard/myorder',
                 element: <MyOrder></MyOrder>
+            },
+            {
+                path : '/dashboard/allseller',
+                element: <AllSeller></AllSeller>,
+                loader: () => fetch('http://192.168.1.103:5000/users'),
             }
         ]
     }
