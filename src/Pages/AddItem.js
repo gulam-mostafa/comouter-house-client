@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Components/Context/AuthProvider';
 import Loading from '../Components/Loading';
+const imageHostKey = process.env.REACT_APP_imgbb_key
 
 const AddItem = () => {
     const { user, logout, updateUserProfile, providerLogin, createUser } =
@@ -36,7 +37,7 @@ const AddItem = () => {
 
         const formData = new FormData()
         formData.append('image', image)
-        const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imgbb}`
+        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
         fetch(url, {
             method: "POST",
             body: formData,
@@ -82,7 +83,7 @@ const AddItem = () => {
             })
 
         // console.log(types, image, title, description, color, mobile, location, condition, orginal_price, total, rating, price,)
-        if(loading){
+        if (loading) {
             <Loading></Loading>
         }
 

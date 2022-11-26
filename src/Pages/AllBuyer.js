@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Table } from 'flowbite-react';
+import { toast } from 'react-toastify';
 
 const AllBuyer = () => {
     const buyerUser = useLoaderData()
     const allbuyer= buyerUser[0].account
+
+    const [users1, setUsers1] = useState([])
     
    
   
@@ -18,6 +21,36 @@ const AllBuyer = () => {
           
             return data;    }
         })
+
+
+        const handleDelete = id => {
+            const sureDelete = window.confirm("Are Your Sure, you want delete")
+            if (sureDelete) {
+                fetch(`http://192.168.1.103:5000/users/${id}`,
+                    {
+                        method: "DELETE"
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+    
+                        if (data.deletedCount > 0) {
+                            // alert(" delete successfully")
+                            toast("delete successfully", {
+                                position: toast.POSITION.TOP_CENTER
+                            });
+                            const remaning = users1.filter(revw => revw._id !== id)
+                            setUsers1(remaning)
+    
+                        }
+                    })
+            }
+        }
+    
+
+
+
+
 console.log(users)
     return (
         <div>
@@ -65,12 +98,13 @@ console.log(users)
                                         {buyer.account}
                                     </Table.Cell>
                                     <Table.Cell>
-                                        <a
+                                        <button
+                                        onClick={() => handleDelete(users._id)}
                                             href="/tables"
                                             className="font-medium text-blue-600 hover:underline dark:text-blue-500"
                                         >
                                            delete
-                                        </a>
+                                        </button>
                                     </Table.Cell>
                                 </Table.Row>
 

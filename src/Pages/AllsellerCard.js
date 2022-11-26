@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Components/Context/AuthProvider';
 
-const AllsellerCard = ({ seller, handleMakeSeller }) => {
+const AllsellerCard = ({ seller, handleMakeSeller, handleDelete }) => {
     const { name, createdAt, account, email, photoURL, _id, role } = seller
     console.log(_id)
 
@@ -80,12 +80,12 @@ const AllsellerCard = ({ seller, handleMakeSeller }) => {
                             }
 
 
-                            <Link
-                                href="#"
+                            <button 
+                               onClick={() => handleDelete(_id)}
                                 className="inline-flex btn-xs items-center rounded-lg border border-gray-300 bg-white py-2 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                             >
-                                Message
-                            </Link>
+                                Delete
+                            </button>
                         </div>
                     </div>
                 </Card>

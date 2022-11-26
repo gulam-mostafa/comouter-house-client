@@ -5,60 +5,60 @@ import { AuthContext } from '../Context/AuthProvider';
 import useAdmin from '../Hooks/useAdmin';
 
 const DashboardLayoyt = () => {
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const [isAdmin] = useAdmin(user?.email)
   console.log(isAdmin, user.email)
-    return (
-        <div>
-        <Navbar1></Navbar1>
-        <button>{/* dashboard butto  */}
-          <label htmlFor="dashboard-drawer" className="btn btn-square btn-ghost lg:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-            </svg>
+  return (
+    <div>
+      <Navbar1></Navbar1>
+      <button>{/* dashboard butto  */}
+        <label htmlFor="dashboard-drawer" className="btn btn-square btn-ghost lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          </svg>
 
-          </label></button>
-        <div className="drawer drawer-mobile">
-            <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content ">
-                <Outlet></Outlet>
-               
-
-            </div>
-            <div className="drawer-side">
-                <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80 text-base-content">
-           
-                    <li ><Link to='/dashboard'> Seller</Link></li>
-                  { 
-                 <>
-                  <li ><Link to='/dashboard/myorder'> My Order</Link></li>
+        </label></button>
+      <div className="drawer drawer-mobile">
+        <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content ">
+          <Outlet></Outlet>
 
 
-                 {
-                  isAdmin && <> 
-                  
-                   <li ><Link to='/dashboard/allbuyer'> All Buyer</Link></li>
-                   <li ><Link to='/dashboard/allseller'> All Seller</Link></li>
-                   <li ><Link to='/dashboard/reported'> Reported Items</Link></li>
-                  
-                  
-                  </>
-                 }
-
-
-                  <li ><Link to='/dashboard/additem'> Sell Post</Link></li>
-                  <li ><Link to='/dashboard/wish'>My wish List</Link></li>
-                 </>
-                  
-                  }
-                   
-                </ul>
-
-            </div>
         </div>
+        <div className="drawer-side">
+          <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
+          <ul className="menu p-4 w-80 text-base-content">
+
+            <li ><Link to='/dashboard'> Seller</Link></li>
+            {
+              <>
+                <li ><Link to='/dashboard/myorder'> My Order</Link></li>
+
+
+                {
+                  isAdmin && <>
+
+                    <li ><Link to='/dashboard/allbuyer'> All Buyer</Link></li>
+                    <li ><Link to='/dashboard/allseller'> All Seller</Link></li>
+                    <li ><Link to='/dashboard/reported'> Reported Items</Link></li>
+
+
+                  </>
+                }
+
+
+                <li ><Link to='/dashboard/additem'> Sell Post</Link></li>
+                <li ><Link to='/dashboard/wish'>My wish List</Link></li>
+              </>
+
+            }
+
+          </ul>
+
+        </div>
+      </div>
     </div>
-    );
+  );
 };
 
 export default DashboardLayoyt;

@@ -8,6 +8,8 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { toast } from "react-toastify";
 import Loading from "../Components/Loading";
 import { async } from "@firebase/util";
+const imageHostKey =process.env.REACT_APP_imgbb_key
+
 
 const SignUp = () => {
   const { logout, updateUserProfile, providerLogin, createUser } =
@@ -44,7 +46,7 @@ const SignUp = () => {
     const formData = new FormData()
     formData.append('image', image)
 
-    const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imgbb}`
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
 
     fetch(url, {
       method: "POST",
