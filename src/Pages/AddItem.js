@@ -1,10 +1,12 @@
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import React, { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../Components/Context/AuthProvider';
+import Loading from '../Components/Loading';
 
 const AddItem = () => {
-    const { logout, updateUserProfile, providerLogin, createUser } =
+    const { user, logout, updateUserProfile, providerLogin, createUser } =
         useContext(AuthContext);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false)
@@ -30,29 +32,67 @@ const AddItem = () => {
         const types = form.types.value;
         const image = form.img.files[0]
         setLoading(true)
-        console.log(types, image, title, description, color, mobile, location, condition, orginal_price, total, rating, price,)
+
 
         const formData = new FormData()
         formData.append('image', image)
-        const url = `https://api.imgbb.com/1/upload?key=2d5b1a5401d8ef6742d2329ac8957810`
+        const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imgbb}`
         fetch(url, {
             method: "POST",
             body: formData,
         })
             .then(res => res.json())
-        
-           
+            .then(data => {
+                if (data.success) {
+                    // console.log(data.data.url)
+
+                    const addItem = {
+                        title: title,
+                        email: user?.email,
+                        displayName: user?.displayName,
+
+                        img: data.data.url,
+                        types, image, description, color, mobile, location, condition, orginal_price, total, rating, price, createdAt: new Date().toISOString()
 
 
+                    }
 
+                    console.log(addItem)
+                    fetch('http://192.168.1.103:5000/items', {
+                        method: 'POST',
+                        headers: {
+                            "content-type": "application/json"
+                        },
+                        body: JSON.stringify(addItem)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data)
+
+                            toast("added successful", {
+                                position: toast.POSITION.TOP_CENTER
+                            })
+                            navigate('/dashboard/myorder')
+
+                        })
+
+                }
+
+
+            })
+
+        // console.log(types, image, title, description, color, mobile, location, condition, orginal_price, total, rating, price,)
+        if(loading){
+            <Loading></Loading>
+        }
 
     }
 
 
     return (
         <div>
-            <div className='w-10/12 text-yellow-300 text-3xl font-bold m-auto text-center'><h1>Add a Item very carefully</h1></div>
-            <form onSubmit={handleAddItem} className="flex lg:w-10/12 m-auto flex-col gap-4">
+            <div className='w-10/12 text-yellow-300 mx-4 my-4 text-3xl font-bold m-auto text-center'><h1>Add a Item very carefully</h1></div>
+            <form onSubmit={handleAddItem} className="flex mx-4 lg:w-10/12 m-auto flex-col gap-4">
                 <div>
                     <div className="mb-2 block">
                         <Label
@@ -78,7 +118,7 @@ const AddItem = () => {
                     </div>
                     <TextInput
                         id="price"
-                        type="text"
+                        type="number"
                         name='price '
                         placeholder="type current Price "
                         required={true}
@@ -171,7 +211,7 @@ const AddItem = () => {
                     </div>
                     <TextInput
                         name="orginal_price"
-                        type="text"
+                        type="number"
                         placeholder="Type original Price "
                         required={true}
                         shadow={true}
@@ -182,11 +222,12 @@ const AddItem = () => {
                         <Label
                             htmlFor="total"
                             value=" Total Item "
+
                         />
                     </div>
                     <TextInput
                         name="total"
-                        type="text"
+                        type="number"
                         placeholder='Total items'
                         required={true}
                         shadow={true}
@@ -201,7 +242,7 @@ const AddItem = () => {
                     </div>
                     <TextInput
                         name='mobile'
-                        type="text"
+                        type="number"
                         placeholder='type Your Mobile Number'
                         required={true}
                         shadow={true}
@@ -220,7 +261,7 @@ const AddItem = () => {
                     <input required type="file" name='img' className="file-input file-input-bordered file-input-sm w-full max-w-xs" />
                 </div>
 
-                <Button type="submit">
+                <Button className='mb-8' type="submit">
                     Add product
                 </Button>
             </form>

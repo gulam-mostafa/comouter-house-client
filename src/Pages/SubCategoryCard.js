@@ -11,25 +11,46 @@ const SubCategoryCard = ({ item, setProduct }) => {
     const { name, img, area, Condition, _id, color, orginal_price, price, rating, createdAt, location, title, types, } = item
     console.log(_id)
 
+
+    // handle reporded 
     const handleRepotedUsers = id => {
         fetch(`http://192.168.1.103:5000/items/report/${id}`, {
             method: "PUT",
         })
-        .then(res => res.json())
-        .then(data => {
-
-            console.log(data)
-           if(data.acknowledged){
-            toast("Reported to admin", {
-                position: toast.POSITION.TOP_CENTER,
-              });
-          
-         
-        }
-       
-      
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.acknowledged) {
+                    toast("Reported to admin", {
+                        position: toast.POSITION.TOP_CENTER,
+                    });
+                }
             })
-    }
+    };
+    const wishItem = { name, img, area, Condition, color, orginal_price, price, rating, createdAt: new Date().toISOString(), location, title, types, email: user?.email}
+    console.log(wishItem)
+    // handle wishlist
+    const handleWishList = id => {
+        fetch(`http://192.168.1.103:5000/wish`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(wishItem)
+        }).then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    //    alert('order success')
+                    toast("Order successful", {
+                        position: toast.POSITION.TOP_CENTER,
+                    });
+                }
+                else {
+                    toast.error(data.message)
+                }
+            })
+    };
 
 
     return (
@@ -41,10 +62,10 @@ const SubCategoryCard = ({ item, setProduct }) => {
                     <div className='max-w-sm max-h-sm'>
                         <img className=' m-auto rounded-xl w-1/2 mb-2 max- h-1/4' src={img} alt="" />
                         <div className='flex  justify-between '>
-                        <button  onClick={() => handleRepotedUsers(_id)} className='btn btn-xs btn-secondary'>Report to Admin</button>
-                        <button><img className=' hover:bg-gray-300 m-auto rounded-xl w-5 h-5 mb-2 ' src='https://i.ibb.co/SX8fMMk/heart.png' alt="" /></button>
+                            <button onClick={() => handleRepotedUsers(_id)} className='btn btn-xs btn-secondary'>Report to Admin</button>
+                            <button onClick={() => handleWishList(_id)}><img className=' hover:bg-gray-300 m-auto rounded-xl w-5 h-5 mb-2 ' src='https://i.ibb.co/SX8fMMk/heart.png' alt="" /></button>
                         </div>
-                  
+
                     </div>
                     <Link href="#">
                         <h5 className="text-xl mb-2 font-semibold tracking-tight text-gray-900 dark:text-white">

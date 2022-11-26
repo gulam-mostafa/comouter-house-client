@@ -20,6 +20,7 @@ import AdminRoute from './AdminRoute';
 import AllBuyer from '../Pages/AllBuyer';
 import ReportedItem from '../Pages/ReportedItem';
 import AddItem from '../Pages/AddItem';
+import MyWishList from '../Pages/MyWishList';
  
 export const Routes = createBrowserRouter([
     {
@@ -99,6 +100,11 @@ export const Routes = createBrowserRouter([
             {
                 path : '/dashboard/additem',
                 element: <AddItem></AddItem>,
+               
+            },
+            {
+                path : '/dashboard/wish',
+                element: <MyWishList></MyWishList>,
                
             },
         ]
