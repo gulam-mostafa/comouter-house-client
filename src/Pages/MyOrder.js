@@ -58,9 +58,9 @@ const MyOrder = () => {
                                 Price
                             </Table.HeadCell>
                             <Table.HeadCell>
-                                edit
+                               Payment
                                 <span className="sr-only text-red-500">
-                                    Edit
+                                   Payment
                                 </span>
                             </Table.HeadCell>
                         </Table.Head>
@@ -87,7 +87,7 @@ const MyOrder = () => {
                                             href="/tables"
                                             className="font-medium text-blue-600 hover:underline dark:text-blue-500"
                                         >
-                                            Edit
+                                            Pay
                                         </a>
                                     </Table.Cell>
                                 </Table.Row>

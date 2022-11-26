@@ -7,8 +7,8 @@ import CategoryCard from "./CategoryCard";
 
 
 const Home = ({ items }) => {
-    const selectedItems = useLoaderData()
-    const totalItems = selectedItems.length
+    // const selectedItems = useLoaderData()
+    // const totalItems = selectedItems.length
 
 
     const [loading, setLoading] = useState(true)
@@ -76,7 +76,7 @@ const Home = ({ items }) => {
                         category={category}
                         key={category._id}
                         loading={loading}
-                        totalItems={totalItems}>
+                   >
                     </CategoryCard>)
 
                 }

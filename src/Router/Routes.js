@@ -31,7 +31,7 @@ export const Routes = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: ({ params }) => fetch(`http://192.168.1.103:5000/items?/${params?.id}`)
+                // loader: ({ params }) => fetch(`http://192.168.1.103:5000?/items?/${params?.id}`)
             },
             {
                 path: '/home',

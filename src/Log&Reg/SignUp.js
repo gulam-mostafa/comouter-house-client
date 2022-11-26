@@ -41,8 +41,15 @@ const SignUp = () => {
     const password = form.password.value;
     const account = event.target.selectOption.value;
     const image = form.photo.files[0];
+    if (password !== password2) {
+      setError('password Password not matched')
+      return
+    }
     setLoading(true)
     setError( '')
+
+ 
+
     console.log(name, image, email, password, password2, account);
 
     const formData = new FormData()
@@ -100,10 +107,7 @@ const SignUp = () => {
         })
       .catch(err => console.log(err))
     // setLoading(false)
-    if (password !== password2) {
-      setError('password Password not matched')
-      return
-    }
+  
 
     // createUser(email, password)
     //   .then((result) => {

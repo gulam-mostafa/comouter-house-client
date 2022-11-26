@@ -21,7 +21,7 @@ const AllBuyer = () => {
           
             return data;    }
         })
-
+        // console.log(users)
 
         const handleDelete = id => {
             const sureDelete = window.confirm("Are Your Sure, you want delete")
@@ -41,8 +41,9 @@ const AllBuyer = () => {
                             });
                             const remaning = users1.filter(revw => revw._id !== id)
                             setUsers1(remaning)
-    
+                            
                         }
+                        fetch()
                     })
             }
         }
@@ -99,8 +100,8 @@ console.log(users)
                                     </Table.Cell>
                                     <Table.Cell>
                                         <button
-                                        onClick={() => handleDelete(users._id)}
-                                            href="/tables"
+                                        onClick={() => handleDelete(buyer._id)}
+                                           
                                             className="font-medium text-blue-600 hover:underline dark:text-blue-500"
                                         >
                                            delete

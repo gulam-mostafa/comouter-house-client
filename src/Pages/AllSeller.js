@@ -80,7 +80,7 @@ const AllSeller = () => {
         <div className=''>
             <p className='text-center text-3xl my-5'>Total Sellers {users.length}</p>
 
-            <div className='grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:grid-cols-2 mx-auto place-items-center'>
+            <div className='grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:grid-cols-2 mx-auto'>
                 {
                     users.map(seller => <AllsellerCard key={seller._id}
                         seller={seller}

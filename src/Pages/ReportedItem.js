@@ -14,6 +14,8 @@ const ReportedItem = () => {
             return data;
         }
     })
+
+    
     // console.log(reported)
     return (
         <div>

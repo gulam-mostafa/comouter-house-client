@@ -13,9 +13,9 @@ const AllsellerCard = ({ seller, handleMakeSeller, handleDelete }) => {
     return (
         <div className='' >
 
-            <div className="max-w-sm ">
+            <div className="max-w-sm   ">
                 <Card>
-                    <div className="flex justify-end px-4 pt-4 ">
+                    <div className="flex  justify-end px-4 pt-4 ">
                         {role === 'sale' && <img src="https://i.ibb.co/4pj3HWH/check.png" alt="" />}
                         <Dropdown
                             inline={true}
