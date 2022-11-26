@@ -8,7 +8,7 @@ const AllBuyer = () => {
     const buyerUser = useLoaderData()
     const allbuyer= buyerUser[0].account
 
-    const [users1, setUsers1] = useState([])
+    const [users1, setUsers1] = useState(null)
     
    
   
@@ -26,7 +26,7 @@ const AllBuyer = () => {
         const handleDelete = id => {
             const sureDelete = window.confirm("Are Your Sure, you want delete")
             if (sureDelete) {
-                fetch(`http://192.168.1.103:5000/users/${id}`,
+                fetch(`http://192.168.1.103:5000/users/delete/${id}`,
                     {
                         method: "DELETE"
                     })

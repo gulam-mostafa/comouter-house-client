@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Table } from 'flowbite-react';
+import { toast } from 'react-toastify';
 
 const ReportedItem = () => {
+    const [users1, setUsers1] = useState(null)
 
     const { data: reported = [], refetch } = useQuery({
         queryKey: ['reported'],
@@ -14,8 +16,35 @@ const ReportedItem = () => {
             return data;
         }
     })
+    console.log(reported[0])
 
-    
+    const handleDelete = id => {
+        const sureDelete = window.confirm("Are Your Sure, you want delete")
+        if (sureDelete) {
+            fetch(`http://192.168.1.103:5000/items/delete/${id}`,
+                {
+                    method: "DELETE"
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+
+                    if (data.deletedCount > 0) {
+                        // alert(" delete successfully")
+                        toast("delete successfully", {
+                            position: toast.POSITION.TOP_CENTER
+                        });
+                        const remaning = users1.filter(revw => revw._id !== id)
+                        setUsers1(remaning)
+
+                    }
+                    refetch()
+                })
+        }
+    }
+
+
+
     // console.log(reported)
     return (
         <div>
@@ -63,12 +92,12 @@ const ReportedItem = () => {
                                     {report.types}
                                 </Table.Cell>
                                 <Table.Cell>
-                                    <a
-                                        href="/tables"
+                                    <button
+                                        onClick={() => handleDelete(report._id)}
                                         className="font-medium text-blue-600 hover:underline dark:text-blue-500"
                                     >
                                         delete
-                                    </a>
+                                    </button>
                                 </Table.Cell>
                             </Table.Row>
 

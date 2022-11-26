@@ -44,11 +44,11 @@ const Home = ({ items }) => {
                     <div>
 
                         <img className="-z-1"
-                            src="https://i.ibb.co/RQGD7HP/computer-body.jpg"
+                            src="https://i.ibb.co/9Hpjq2D/computer-coloer.jpg"
                             alt="..." />
                     </div>
                     <img
-                        src="https://i.ibb.co/9Hpjq2D/computer-coloer.jpg"
+                        src="https://i.ibb.co/RQGD7HP/computer-body.jpg"
                         alt="..."
                     />
                     <img
