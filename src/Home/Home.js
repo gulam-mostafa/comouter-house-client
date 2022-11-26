@@ -25,7 +25,7 @@ const Home = ({ items }) => {
 
 
             })
-    }, [])
+    }, [loading])
 
     if (loading) {
         <h1 className='text-center mt-32'><Loading></Loading></h1>
@@ -72,7 +72,7 @@ const Home = ({ items }) => {
             <div className="grid md:grid-cols-3 md:grid-cols-2 gap-4 ">
 
                 {
-                    categorys.map(category => <CategoryCard
+                    categorys?.map(category => <CategoryCard
                         category={category}
                         key={category._id}
                         loading={loading}
