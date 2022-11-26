@@ -48,6 +48,14 @@ const Home = ({ items }) => {
                             alt="..." />
                     </div>
                     <img
+                        src="https://i.ibb.co/VVbjGMr/motherboard.jpg"
+                        alt="..."
+                    />
+                     <img
+                        src="https://i.ibb.co/DgvKk5n/desktop.jpg"
+                        alt="..."
+                    />
+                    <img
                         src="https://i.ibb.co/RQGD7HP/computer-body.jpg"
                         alt="..."
                     />
@@ -59,10 +67,7 @@ const Home = ({ items }) => {
                         src="https://i.ibb.co/DgvKk5n/desktop.jpg"
                         alt="..."
                     />
-                    <img
-                        src="https://i.ibb.co/VVbjGMr/motherboard.jpg"
-                        alt="..."
-                    />
+                  
                 </Carousel>
 
             </div>
