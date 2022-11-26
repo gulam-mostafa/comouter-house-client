@@ -19,6 +19,7 @@ import AllSeller from '../Pages/AllSeller';
 import AdminRoute from './AdminRoute';
 import AllBuyer from '../Pages/AllBuyer';
 import ReportedItem from '../Pages/ReportedItem';
+import AddItem from '../Pages/AddItem';
  
 export const Routes = createBrowserRouter([
     {
@@ -94,7 +95,12 @@ export const Routes = createBrowserRouter([
                 path : '/dashboard/reported',
                 element: <AdminRoute><ReportedItem></ReportedItem></AdminRoute>,
                 loader: () => fetch('http://192.168.1.103:5000/users'),
-            }
+            },
+            {
+                path : '/dashboard/additem',
+                element: <AddItem></AddItem>,
+               
+            },
         ]
     }
 ])

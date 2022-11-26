@@ -47,7 +47,7 @@ const DashboardLayoyt = () => {
                  }
 
 
-                  <li ><Link to='/dashboard/'>My Sell Post</Link></li>
+                  <li ><Link to='/dashboard/additem'> Sell Post</Link></li>
                   <li ><Link to='/dashboard/'>My Sell Post</Link></li>
                  </>
                   
