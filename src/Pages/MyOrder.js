@@ -6,7 +6,7 @@ import Loading from '../Components/Loading';
 const MyOrder = () => {
     const [orders, setOrders] = useState();
     const { user, logOut, } = useContext(AuthContext)
-    const [loader, setLoader] = useState(true)
+    const [loader, setLoader] = useState(false)
     // console.log(orders.length)
 
     useEffect(() => {
@@ -14,13 +14,16 @@ const MyOrder = () => {
             // headers: {
             //     authorization: `bearer ${localStorage.getItem('token')}`
             // }
+           
 
         })
             .then(res => {
                 // if (res.status === 401 || res.status === 403) {
                 //     logOut()
                 // }
+                setLoader(true)
                 return res.json()
+                
 
             })
             .then(data => {

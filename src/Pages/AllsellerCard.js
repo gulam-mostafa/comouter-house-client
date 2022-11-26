@@ -5,10 +5,11 @@ import { AuthContext } from '../Components/Context/AuthProvider';
 
 const AllsellerCard = ({ seller, handleMakeSeller, handleDelete }) => {
     const { name, createdAt, account, email, photoURL, _id, role } = seller
-    console.log(_id)
-
+    console.log(email, _id)
+    
     const { user } = useContext(AuthContext)
-
+    
+    console.log()
     return (
         <div className='' >
 

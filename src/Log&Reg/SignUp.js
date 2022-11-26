@@ -28,6 +28,7 @@ const SignUp = () => {
   // console.log(termsAccepted)
   const termsAndCondition = (event) => {
     setTermsAccepted(event.target.checked);
+   
   };
 
 
@@ -81,10 +82,13 @@ const SignUp = () => {
             if (user.uid) {
               toast("Registration successful", {
                 position: toast.POSITION.TOP_CENTER
+                
               })
+              navigate(from, { replace: true });
               setLoading(false)
             }
             navigate(from, { replace: true });
+            // window.location.reload(setTimeout(9000));
           })
           .catch((e) => {
             console.log(e);

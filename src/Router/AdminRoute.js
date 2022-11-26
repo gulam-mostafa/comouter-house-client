@@ -11,8 +11,8 @@ const AdminRoute = ({ children }) => {
     const [isAdmin, isAdminLoading] = useAdmin(user?.email);
     const location = useLocation();
 
-    if (loading || isAdminLoading) {
-        return <Loading></Loading>
+    if (loading && isAdminLoading) {
+        return <p>o....</p>
     }
 
     if (user && isAdmin) {

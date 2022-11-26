@@ -3,7 +3,8 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import AllsellerCard from './AllsellerCard';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../Components/Context/AuthProvider';
 
 
 
@@ -12,6 +13,7 @@ const AllSeller = () => {
     // const allSellers = sellerUsers[0].account
     // console.log(sellerUsers[0])
     const [users1, setUsers1] = useState([])
+    const {user} = useContext(AuthContext)
 
     const { data: users = [], refetch } = useQuery({
         

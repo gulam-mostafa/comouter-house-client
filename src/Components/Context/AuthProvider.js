@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
   // updateProfile
   const updateUserProfile = (profile) => {
     console.log(profile)
-    setLoading(true);
+    setLoading(false);
     return updateProfile(auth.currentUser, profile);
   };
   //  create user
