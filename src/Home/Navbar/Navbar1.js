@@ -21,9 +21,9 @@ const Navbar1 = () => {
 
   let activeStyle = {
 
-    backgroundColor: '#FEFEFF',
+    backgroundColor: '#4718B3',
     fontSize: '20px',
-    color: "black",
+    color: "#FFFA5C",
     textAlign: "center",
 
     borderRadius: '5px',

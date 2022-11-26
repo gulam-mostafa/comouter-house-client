@@ -22,6 +22,7 @@ import ReportedItem from '../Pages/ReportedItem';
 import AddItem from '../Pages/AddItem';
 import MyWishList from '../Pages/MyWishList';
 import MyBuyer from '../Pages/MyBuyer';
+import MyAllProduct from '../Pages/MyAllProduct';
  
 export const Routes = createBrowserRouter([
     {
@@ -63,7 +64,7 @@ export const Routes = createBrowserRouter([
             {
                 path: '/myorder',
                 element: <MyOrder></MyOrder>
-            }
+            },
         ]
         
     }
@@ -111,6 +112,11 @@ export const Routes = createBrowserRouter([
             {
                 path : '/dashboard/mybuyer',
                 element: <MyBuyer></MyBuyer>,
+               
+            },
+            {
+                path : '/dashboard/myallproduct',
+                element: <MyAllProduct></MyAllProduct>,
                
             },
         ]

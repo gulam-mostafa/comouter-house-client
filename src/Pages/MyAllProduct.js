@@ -1,66 +1,53 @@
-import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Table } from 'flowbite-react';
+import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../Components/Context/AuthProvider';
 
-const AllBuyer = () => {
-    const buyerUser = useLoaderData()
-    const allbuyer = buyerUser[0].account
-
-    const [users1, setUsers1] = useState(null)
+const MyAllProduct = () => {
+    const { user } = useContext(AuthContext)
 
 
-
-    const { data: users = [], refetch } = useQuery({
-        queryKey: ['users'],
+    const { data: allProducts = [], refetch } = useQuery({
+        queryKey: ['allProducts'],
 
         queryFn: async () => {
-            const res = await fetch(`http://192.168.1.103:5000/users?account=buyer`);
+            const res = await fetch(`http://192.168.1.103:5000/myallproducts?email=${user.email}`);
             const data = await res.json();
 
             return data;
         }
     })
-    // console.log(users)
 
-    const handleDelete = id => {
-        const sureDelete = window.confirm("Are Your Sure, you want delete")
-        if (sureDelete) {
-            fetch(`http://192.168.1.103:5000/users/delete/${id}`,
-                {
-                    method: "DELETE"
-                })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-
-                    if (data.deletedCount > 0) {
-                        // alert(" delete successfully")
-                        toast("Your Item is Live now", {
-                            position: toast.POSITION.TOP_CENTER
-                        });
-                        // const remaning = users1.filter(revw => revw._id !== id)
-                        // setUsers1(remaning)
-
-                        refetch()
-                    }
-                })
-        }
-    }
+    const handleAdvertise = id => {
+        fetch(`http://192.168.1.103:5000/items/ad/${id}`, {
+            method: "PUT",
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.acknowledged) {
+                    toast("Your product is live", {
+                        position: toast.POSITION.TOP_CENTER,
+                    });
+                    refetch()
+                }
+                
+            })
+          
+    };
 
 
 
-
-
-    console.log(users)
     return (
         <div>
+
+            <p className='text-center text-blue-red-500 text-3xl py-4 underline'>My all items {allProducts.length} </p>
             <div>
                 <Table striped={true}>
                     <Table.Head>
                         <Table.HeadCell>
-                            image
+                            number
                         </Table.HeadCell>
                         <Table.HeadCell>
                             name
@@ -82,31 +69,36 @@ const AllBuyer = () => {
                         </Table.HeadCell>
                     </Table.Head>
                     {
-                        users?.map(buyer => <Table.Body className="divide-y" key={buyer._id}>
+                        allProducts?.map((product, i) => <Table.Body className="divide-y" key={product._id}>
                             <Table.Row className="bg-white dark:bbuyer-gray-700 dark:bg-gray-800">
                                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900  dark:text-white">
-                                    <img className='rounded-full w-10 h-10 ' src={buyer.photoURL} alt="" />
+                                    <p>{i + 1}</p>
                                 </Table.Cell>
                                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                    {buyer.name}
+                                    {product.title}
                                 </Table.Cell>
                                 <Table.Cell>
-                                    {buyer.email}
+                                    {product.color}
                                 </Table.Cell>
                                 <Table.Cell>
-                                    {buyer.createdAt.slice(0, -14)}
+                                    {product.createdAt.slice(0, -14)}
                                 </Table.Cell>
                                 <Table.Cell>
-                                    {buyer.account}
+                                    {product.types}
                                 </Table.Cell>
                                 <Table.Cell>
+                                  {
+                                    product.ads ==='ads' ?(
+                                        <p>Live</p>
+                                    ):
                                     <button
-                                        onClick={() => handleDelete(buyer._id)}
 
-                                        className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                                    >
-                                        delete
-                                    </button>
+                                    onClick={() => handleAdvertise(product._id)}
+                                    className=" text-blue-600 hover:underline btn lg:btn-xs   text-white"
+                                >
+                                    Ads.
+                                </button>
+                                  }
                                 </Table.Cell>
                             </Table.Row>
 
@@ -117,8 +109,9 @@ const AllBuyer = () => {
                     }
                 </Table>
             </div>
+
         </div>
     );
 };
 
-export default AllBuyer;
+export default MyAllProduct;

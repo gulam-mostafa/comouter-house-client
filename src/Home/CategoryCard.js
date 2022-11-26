@@ -21,8 +21,8 @@ const CategoryCard = ({ category, loading , totalItems,}) => {
                         {/* <p className='mb-4 '>Total Item: {total}</p> */}
                         <p className='mb-4 '>Category: {types}</p>
                        
-                        <Link to={`/subcategory/${types}`}> <button className="btn bgColor md:w-1/3 m-auto textColor ">See ALl</button></Link>
-
+                        <Link to={`/subcategory/${types}`}> <button className="btn bgColor md:w-1/3 m-auto textColor ">See All</button></Link>
+                        
                     </div>
                 </div>
             </div>

@@ -52,6 +52,7 @@ const DashboardLayoyt = () => {
                 <li ><Link to='/dashboard/additem'> Add a item</Link></li>
                 <li ><Link to='/dashboard/wish'>My wish List</Link></li>
                 <li ><Link to='/dashboard/mybuyer'>My Buyer</Link></li>
+                <li ><Link to='/dashboard/myallproduct'>My All Products</Link></li>
               </>
 
             }
