@@ -262,9 +262,11 @@ const AddItem = () => {
                     <input required type="file" name='img' className="file-input file-input-bordered file-input-sm w-full max-w-xs" />
                 </div>
 
-                <Button className='mb-8' type="submit">
-                    Add product
-                </Button>
+               {
+                loading? (<Loading></Loading>) :( <Button className='mb-8' type="submit">
+                Add product
+            </Button>)
+               }
             </form>
         </div>
     );

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 const useAdmin = email => {
     const [isAdmin, setIsAdmin] = useState(false);
-    const [isAdminLoading, setIsAdminLoading] = useState(false);
+    const [isAdminLoading, setIsAdminLoading] = useState(true);
     useEffect(() => {
         if (email) {
             fetch(`http://192.168.1.103:5000/users/admin/${email}`)

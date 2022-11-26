@@ -10,7 +10,7 @@ const PriveteRouter = ({ children }) => {
     return <Loading></Loading>;
   }
   if (!user) {
-    return <Navigate to="/login" state={{ from: location }}></Navigate>;
+    return <Navigate to="/" state={{ from: location }}></Navigate>;
   }
   return children;
 };

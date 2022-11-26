@@ -42,6 +42,7 @@ const SignUp = () => {
     const account = event.target.selectOption.value;
     const image = form.photo.files[0];
     setLoading(true)
+    setError( '')
     console.log(name, image, email, password, password2, account);
 
     const formData = new FormData()

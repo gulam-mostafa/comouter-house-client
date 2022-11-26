@@ -21,6 +21,7 @@ import AllBuyer from '../Pages/AllBuyer';
 import ReportedItem from '../Pages/ReportedItem';
 import AddItem from '../Pages/AddItem';
 import MyWishList from '../Pages/MyWishList';
+import MyBuyer from '../Pages/MyBuyer';
  
 export const Routes = createBrowserRouter([
     {
@@ -105,6 +106,11 @@ export const Routes = createBrowserRouter([
             {
                 path : '/dashboard/wish',
                 element: <MyWishList></MyWishList>,
+               
+            },
+            {
+                path : '/dashboard/mybuyer',
+                element: <MyBuyer></MyBuyer>,
                
             },
         ]

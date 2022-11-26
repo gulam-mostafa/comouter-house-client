@@ -6,10 +6,10 @@ import { AuthContext } from '../Components/Context/AuthProvider';
 import '../Home/Navbar/Navbar.css'
 import OrderModal from './OrderModal';
 
-const SubCategoryCard = ({ item, setProduct }) => {
+const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
     const { user } = useContext(AuthContext)
-    const { name, img, area, Condition, _id, color, orginal_price, price, rating, createdAt, location, title, types, } = item
-    console.log(_id)
+    const { name, img, area, Condition, _id, color, email: email1,  orginal_price, price, rating, createdAt, location, title, types, } = item
+    // console.log(item)
 
 
     // handle reporded 
@@ -27,8 +27,8 @@ const SubCategoryCard = ({ item, setProduct }) => {
                 }
             })
     };
-    const wishItem = { name, img, area, Condition, color, orginal_price, price, rating, createdAt: new Date().toISOString(), location, title, types, email: user?.email}
-    console.log(wishItem)
+    const wishItem = { name, img, area, Condition, color, orginal_price, price, rating, createdAt: new Date().toISOString(), location, title, types, email1: user?.email }
+    // console.log(wishItem)
     // handle wishlist
     const handleWishList = id => {
         fetch(`http://192.168.1.103:5000/wish`, {
@@ -50,6 +50,7 @@ const SubCategoryCard = ({ item, setProduct }) => {
                     toast.error(data.message)
                 }
             })
+            
     };
 
 
@@ -75,6 +76,9 @@ const SubCategoryCard = ({ item, setProduct }) => {
                     <Link >
                         <p className="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
                             <small>Sale for {user?.displayName}</small>
+                        </p>
+                        <p className="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
+                            <small> {email1}</small>
                         </p>
                         <p className="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
                             <small>Location {location}, {area}</small>
@@ -113,20 +117,23 @@ const SubCategoryCard = ({ item, setProduct }) => {
                             BooK now
                         </Link>
 
-                        <div className="">
-                            <label
-                                htmlFor="Add-modal"
-                                className="btn btn-primary bgColor textColor "
-                                onClick={() => setProduct(item)}
-                            >Buy</label>
+                        {
+                            user?.uid ?
+                                (<div className="">
+                                    <label
+                                        htmlFor="Add-modal"
+                                        className="btn btn-primary bgColor textColor "
+                                        onClick={() => setItemData(item)}
+                                    >Buy</label>
 
-                        </div>
+                                </div>) :
+                                (
+                                    <Link to='/login' className='btn btn-primary'>Button</Link>
+                                )
+                        }
 
                     </div>
-                    <OrderModal
-                        item={item}
-
-                    ></OrderModal>
+                 
                 </div>
             </div>
         </div>

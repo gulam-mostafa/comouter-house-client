@@ -3,10 +3,12 @@ import { Link, Outlet } from 'react-router-dom';
 import Navbar1 from '../../Home/Navbar/Navbar1';
 import { AuthContext } from '../Context/AuthProvider';
 import useAdmin from '../Hooks/useAdmin';
+import Loading from '../Loading';
 
 const DashboardLayoyt = () => {
-  const { user } = useContext(AuthContext)
+  const { user , loading } = useContext(AuthContext)
   const [isAdmin] = useAdmin(user?.email)
+ 
   console.log(isAdmin, user.email)
   return (
     <div>
@@ -47,8 +49,9 @@ const DashboardLayoyt = () => {
                 }
 
 
-                <li ><Link to='/dashboard/additem'> Sell Post</Link></li>
+                <li ><Link to='/dashboard/additem'> Add a item</Link></li>
                 <li ><Link to='/dashboard/wish'>My wish List</Link></li>
+                <li ><Link to='/dashboard/mybuyer'>My Buyer</Link></li>
               </>
 
             }

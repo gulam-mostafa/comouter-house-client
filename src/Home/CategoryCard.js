@@ -18,7 +18,7 @@ const CategoryCard = ({ category, loading , totalItems,}) => {
                     <h2 className="text-2xl pb-1 font-semibold  text-center text-yellow-200">{name}</h2>
 
                     <div className="card-action flex justify-around  flex-col">
-                        <p className='mb-4 '>Total Item: {total}</p>
+                        {/* <p className='mb-4 '>Total Item: {total}</p> */}
                         <p className='mb-4 '>Category: {types}</p>
                        
                         <Link to={`/subcategory/${types}`}> <button className="btn bgColor md:w-1/3 m-auto textColor ">See ALl</button></Link>
