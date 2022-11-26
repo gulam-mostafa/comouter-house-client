@@ -42,7 +42,7 @@ const Navbar1 = () => {
             Computer House
           </span>
           <img
-            src="https://i.ibb.co/YdyzZ6d/icon12.png"
+            src="https://i.ibb.co/Wc4J828/pc-logo.png"
             className="mr-6 h-14  hidden md:block "
             alt="Logo"
           />

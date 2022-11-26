@@ -76,9 +76,9 @@ const Home = ({ items }) => {
                 <h1 className='text-center w-11/12 mx-auto'><Loading></Loading></h1> :
                 <h1></h1>}
             <div className="mt-16">
-            <div className="flex  justify-evenly lg:mx-96 mx-6 ">
+                <div className="flex  justify-evenly xl:mx- lg:mx-64 mx-6 ">
                     <img className="w-20" src="https://i.ibb.co/Lnbh3Qx/91158-scroll-down-arrows.gif" alt="" />
-                    <p className="lg:text-5xl md:text-2xl font-semibold text-lime-500 text-center my-4">Our Category </p>
+                    <p className="xl:text-5xl lg:text-3xl md:text-2xl font-semibold text-lime-500 text-center my-4">Our Category </p>
                     <img className="w-20" src="https://i.ibb.co/Lnbh3Qx/91158-scroll-down-arrows.gif" alt="" />
                 </div>
                 <div className="grid md:grid-cols-3 md:grid-cols-2 gap-4 ">
@@ -97,7 +97,7 @@ const Home = ({ items }) => {
 
             {/* advertisement  */}
             <div className=" -4 py-16 ">
-                <div className="flex  justify-evenly lg:mx-96 mx-6">
+                <div className="flex  justify-evenly lg:mx-64 mx-6">
                     <img className="w-20" src="https://i.ibb.co/Lnbh3Qx/91158-scroll-down-arrows.gif" alt="" />
                     <p className="lg:text-5xl md:text-2xl font-semibold text-blue-500 text-center my-4">Popular Product </p>
                     <img className="w-20" src="https://i.ibb.co/Lnbh3Qx/91158-scroll-down-arrows.gif" alt="" />
