@@ -27,7 +27,7 @@ const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
                 }
             })
     };
-    const wishItem = { name, img, area, Condition, color, orginal_price, price, rating, createdAt: new Date().toISOString(), location, title, types, email1: user?.email }
+    const wishItem = { name, img, area, Condition, color, orginal_price, price, rating, createdAt: new Date().toISOString(), location, title, types, email: user?.email }
     // console.log(wishItem)
     // handle wishlist
     const handleWishList = id => {
@@ -42,7 +42,7 @@ const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
                 console.log(data);
                 if (data.acknowledged) {
                     //    alert('order success')
-                    toast("Order successful", {
+                    toast("added to whs list", {
                         position: toast.POSITION.TOP_CENTER,
                     });
                 }
@@ -60,11 +60,11 @@ const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
                 <div className='border rounded-xl px-1 py-1'
 
                 >
-                    <div className='max-w-sm max-h-sm'>
+                    <div className='max-w- sm max-h- sm'>
                         <img className=' m-auto rounded-xl w-1/2 mb-2 max- h-1/4' src={img} alt="" />
-                        <div className='flex  justify-between '>
+                        <div className='flex  justify-between mx-4 '>
                             <button onClick={() => handleRepotedUsers(_id)} className='btn btn-xs btn-secondary'>Report to Admin</button>
-                            <button onClick={() => handleWishList(_id)}><img className=' hover:bg-gray-300 m-auto rounded-xl w-5 h-5 mb-2 ' src='https://i.ibb.co/SX8fMMk/heart.png' alt="" /></button>
+                            <button onClick={() => handleWishList(_id)}><img className=' hover:bg-gray-300 m-auto rounded-xl w-8 h-8 mb-2 ' src='https://i.ibb.co/SX8fMMk/heart.png' alt="" /></button>
                         </div>
 
                     </div>
@@ -109,13 +109,13 @@ const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
                         <span className="text- font-bold text-gray-900 dark:text-white">
                             Price: {price}
                         </span>
-                        <Link
+                        {/* <Link
 
                             className="rounded-lg bg-blue-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4
                              focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
-                            BooK now
-                        </Link>
+                          
+                        </Link> */}
 
                         {
                             user?.uid ?
@@ -124,11 +124,11 @@ const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
                                         htmlFor="Add-modal"
                                         className="btn btn-primary bgColor textColor "
                                         onClick={() => setItemData(item)}
-                                    >Buy</label>
+                                    >  BooK now</label>
 
                                 </div>) :
                                 (
-                                    <Link to='/login' className='btn btn-primary'>Button</Link>
+                                    <Link to='/login' className='btn btn-primary btn-xs'>sign in after buy</Link>
                                 )
                         }
 

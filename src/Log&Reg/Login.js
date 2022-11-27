@@ -21,7 +21,7 @@ const Login = () => {
   const [token] =useToken(loginUserEmail)
   const [userEmail, setUserEmail] = useState("");
   console.log(error);
-  const { user, logout, signIn, redirect, providerLogin, forgotPassword } =
+  const { user, logout, signIn, redirect, providerLogin, forgotPassword, updateUserProfile } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -70,11 +70,22 @@ const Login = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
+
+        const userInfo={
+          displayName: user.displayName,
+          email: user.email,
+
+        }
+        updateUserProfile(userInfo)
+       
+
+
         if (user.uid) {
           toast("Login successful", {
             position: toast.POSITION.TOP_CENTER,
           });
-          navigate(from, { replace: true });
+          setLoginUserEmail(user.email)
+          // navigate(from, { replace: true });
         }
       })
       .catch((error) => {

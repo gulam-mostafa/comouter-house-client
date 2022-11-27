@@ -84,7 +84,11 @@ const Navbar1 = () => {
                     {user?.email}
                   </span>
                 </Dropdown.Header >
-                <Dropdown.Item><Link to='/dashboard'>Dashboard</Link></Dropdown.Item>
+               {
+                user?.email?
+                <Dropdown.Item><Link to='/dashboard'>Dashboard</Link></Dropdown.Item> :
+                <h3>o</h3>
+               }
                 <Dropdown.Item><Link to='/myorder'>My Order</Link></Dropdown.Item>
                 <Dropdown.Item>Earnings</Dropdown.Item>
                 <Dropdown.Divider />
@@ -118,11 +122,17 @@ const Navbar1 = () => {
 
 
 
-          <NavLink className="text-bold textColor text-xl" to='/dashboard'
-            style={({ isActive }) => isActive ? activeStyle : undefined}
-          >
-            Dashboard
-          </NavLink>
+         
+          {
+                user?.email?
+                <NavLink className="text-bold textColor text-xl" to='/dashboard'
+                style={({ isActive }) => isActive ? activeStyle : undefined}
+              >
+                Dashboard
+              </NavLink> :
+                <></>
+               }
+
           <NavLink
             style={({ isActive }) => isActive ? activeStyle : undefined}
             className="text-bold textColor text-xl" to="/terms">

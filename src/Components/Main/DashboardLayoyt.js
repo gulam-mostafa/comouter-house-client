@@ -1,15 +1,19 @@
 import React, { useContext } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLoaderData } from 'react-router-dom';
 import Navbar1 from '../../Home/Navbar/Navbar1';
 import { AuthContext } from '../Context/AuthProvider';
 import useAdmin from '../Hooks/useAdmin';
+import useSeller from '../Hooks/UseSeller';
 import Loading from '../Loading';
 
 const DashboardLayoyt = () => {
-  const { user , loading } = useContext(AuthContext)
+  const { user, loading } = useContext(AuthContext)
+  // const sellerUser = useLoaderData()
+  // console.log(sellerUser)
   const [isAdmin] = useAdmin(user?.email)
- 
-  console.log(isAdmin, user.email)
+  const [isSeller] = useSeller(user?.email)
+
+  console.log(isSeller, user.email)
   return (
     <div className=''>
       <Navbar1></Navbar1>
@@ -34,8 +38,15 @@ const DashboardLayoyt = () => {
             <li ><Link to='/dashboard'> Seller</Link></li>
             {
               <>
-                <li ><Link to='/dashboard/myorder'> My Order</Link></li>
 
+                {
+                  !isSeller && <>
+                    <li ><Link to='/dashboard/wish'>My wish List</Link></li>
+                    <li ><Link to='/dashboard/myorder'> My Order</Link></li>
+
+
+                  </>
+                }
 
                 {
                   isAdmin && <>
@@ -44,15 +55,19 @@ const DashboardLayoyt = () => {
                     <li ><Link to='/dashboard/allseller'> All Seller</Link></li>
                     <li ><Link to='/dashboard/reported'> Reported Items</Link></li>
 
+                    <li ><Link to='/dashboard/mybuyer'>My Buyer</Link></li>
 
                   </>
                 }
 
+                {isSeller && !isSeller &&
+                  <>
+                    <li ><Link to='/dashboard/additem'> Add a item</Link></li>
+                    <li ><Link to='/dashboard/myallproduct'>My All Products</Link></li>
 
-                <li ><Link to='/dashboard/additem'> Add a item</Link></li>
-                <li ><Link to='/dashboard/wish'>My wish List</Link></li>
-                <li ><Link to='/dashboard/mybuyer'>My Buyer</Link></li>
-                <li ><Link to='/dashboard/myallproduct'>My All Products</Link></li>
+                  </>
+                }
+
               </>
 
             }

@@ -7,7 +7,7 @@ const MyWishList = () => {
 
     const [wishs, setWishs] = useState();
     const { user, logOut, } = useContext(AuthContext)
-    const [loader, setLoader] = useState(true)
+    const [loader, setLoader] = useState(false)
     // console.log(orders.length)
 
     useEffect(() => {
@@ -28,9 +28,11 @@ const MyWishList = () => {
                 // setLoading(false);
                 setWishs(data)
                 setLoader(false)
+                console.log('fdg', data)
             })
 
     }, [user?.email])
+
     return (
         <div className='mx-10 my-8'>
             {

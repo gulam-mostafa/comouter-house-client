@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Loading from '../Components/Loading';
 
 const CheckOutForm = ({orders}) => {
@@ -149,6 +150,7 @@ const CheckOutForm = ({orders}) => {
    <p className='text-blue-500'> Your transaction Id {transactionId}</p>
    </div>
 }
+<Link className='btn mx-3 my-8' to='/dashboard/myorder'>Order list</Link>
    </div>
     );
 };

@@ -76,6 +76,7 @@ export const Routes = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PriveteRouter><DashboardLayoyt></DashboardLayoyt></PriveteRouter>,
+        loader: () => fetch('http://192.168.1.103:5000/users'),
         children: [
             {
                 path: '/dashboard',

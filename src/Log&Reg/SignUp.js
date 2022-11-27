@@ -39,7 +39,7 @@ const SignUp = () => {
     setTermsAccepted(event.target.checked);
 
   };
-  if(token){
+  if (token) {
     navigate('/')
   }
 
@@ -58,8 +58,6 @@ const SignUp = () => {
     }
     setLoading(true)
     setError('')
-
-
 
     console.log(name, image, email, password, password2, account);
 
@@ -90,8 +88,8 @@ const SignUp = () => {
             })
               .then(res => res.json())
               .then(data => {
-               
-            
+
+
               })
               .then(() => {
                 // navigate('/home')
@@ -109,8 +107,7 @@ const SignUp = () => {
               // navigate(from, { replace: true });
               setLoading(false)
             }
-            // navigate(from, { replace: true });
-            // window.location.reload(setTimeout(9000));
+
           })
           .catch((e) => {
             console.log(e);
@@ -120,41 +117,7 @@ const SignUp = () => {
           });
       })
       .catch(err => console.log(err))
-    // setLoading(false)
 
-
-    // createUser(email, password)
-    //   .then((result) => {
-    //     const user = result.user;
-    //     console.log(user);
-    //     setError("");
-    //     const currentUser = {
-    //       email: user.email,
-    //     };
-    //     if (user.uid) {
-    //       toast("Login successful", {
-    //         position: toast.POSITION.TOP_CENTER,
-    //       });
-    //       navigate(from, { replace: true });
-    //       setLoading(false);
-    //     }
-
-    //     setError("");
-    //     handleUpdateUserProfile(name, data.data.display_url);
-    //     if (user.uid) {
-    //       toast("Registration successful", {
-    //         position: toast.POSITION.TOP_CENTER
-    //       })
-    //       setLoading(false)
-    //     }
-    //     navigate(from, { replace: true });
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //     setError(e.message);
-    //     setLoading(false)
-
-    //   });
   };
   // const handleUpdateUserProfile = (name, photo) => {
   // const profile = {
@@ -169,11 +132,14 @@ const SignUp = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user
+
+
         if (user.uid) {
           toast("Login successful", {
             position: toast.POSITION.TOP_CENTER,
           });
-          navigate(from, { replace: true });
+          setCreateUserEmail(user.email)
+          // navigate(from, { replace: true });
         }
       })
       .catch((error) => {
@@ -183,7 +149,7 @@ const SignUp = () => {
       })
   }
 
- 
+
 
 
 
