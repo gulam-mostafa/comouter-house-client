@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import React, { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -15,7 +16,20 @@ const AddItem = () => {
     const location = useLocation();
 
 
+    const { data: selleruser = [],  } = useQuery({
+        queryKey: ['selleruser'],
 
+        queryFn: async () => {
+            const res = await fetch(`http://192.168.1.103:5000/users/email?email=${user?.email}`);
+            const data = await res.json();
+
+            return data;
+        }
+    })
+    const role= selleruser[0]?.role;
+    const roles= selleruser[0];
+
+   console.log(selleruser[0]?.role)
 
     const handleAddItem = (event) => {
         event.preventDefault()
@@ -51,7 +65,7 @@ const AddItem = () => {
                         title: title,
                         email: user?.email,
                         displayName: user?.displayName,
-
+                        selleruser, role, roles,
                         img: data.data.url,
                         types, image, description, color, mobile, location, condition, orginal_price, total, rating, price, createdAt: new Date().toISOString()
 
@@ -73,7 +87,7 @@ const AddItem = () => {
                             toast("added successful", {
                                 position: toast.POSITION.TOP_CENTER
                             })
-                            navigate('/dashboard/myorder')
+                            navigate('/dashboard/myallproduct')
 
                         })
 

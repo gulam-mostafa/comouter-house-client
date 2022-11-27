@@ -87,6 +87,23 @@ const MyAllProduct = () => {
                                     {product.types}
                                 </Table.Cell>
                                 <Table.Cell>
+                                {/* {
+                                product.role?
+                                (  
+                                    product.ads?
+                                    (<p>ad.</p>)
+                                    :
+
+                                    (<p>live</p>)
+                                    ):
+                                    (  
+                                   !product.ads?
+                                    (<p>req.</p>):
+                                    (<p>d</p>)
+                                    )
+                            } */}
+                                </Table.Cell>
+                                <Table.Cell>
                                   {
                                     product.ads ==='ads' ?(
                                         <p>Live</p>
@@ -102,7 +119,7 @@ const MyAllProduct = () => {
                                 </Table.Cell>
                             </Table.Row>
 
-
+                        
 
 
                         </Table.Body>)
