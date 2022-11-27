@@ -12,10 +12,13 @@ import {
 import { toast } from "react-toastify";
 import Loading from "../Components/Loading";
 import app from "../firebase/firebase.config";
+import useToken from "../Components/Hooks/useToken";
 
 const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loginUserEmail, setLoginUserEmail] = useState('')
+  const [token] =useToken(loginUserEmail)
   const [userEmail, setUserEmail] = useState("");
   console.log(error);
   const { user, logout, signIn, redirect, providerLogin, forgotPassword } =
@@ -23,6 +26,10 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+  if(token){
+    navigate(from, { replace: true });
+  }
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -33,9 +40,12 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
     setLoading(true);
+    setError('');
     signIn(email, password)
       .then((result) => {
         const user = result.user;
+
+        setLoginUserEmail(user.email)
 
         const currentUser = {
           email: user.email,
@@ -44,7 +54,7 @@ const Login = () => {
           toast("Login successful", {
             position: toast.POSITION.TOP_CENTER,
           });
-          navigate(from, { replace: true });
+        
           setLoading(false);
         }
         console.log(currentUser);

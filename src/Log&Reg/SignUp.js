@@ -8,7 +8,9 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { toast } from "react-toastify";
 import Loading from "../Components/Loading";
 import { async } from "@firebase/util";
-const imageHostKey =process.env.REACT_APP_imgbb_key
+import useToken from "../Components/Hooks/useToken";
+const imageHostKey = process.env.REACT_APP_imgbb_key
+
 
 
 const SignUp = () => {
@@ -18,19 +20,28 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   const location = useLocation();
+
   const [createUserEmail, setCreateUserEmail] = useState('')
+
+
+  // jwt use hook token
+  const [token] = useToken(createUserEmail);
 
   const from = location.state?.from?.pathname || "/";
   const googleProvider = new GoogleAuthProvider()
 
   const [termsAccepted, setTermsAccepted] = useState(false);
- 
+
+
+
   // console.log(termsAccepted)
   const termsAndCondition = (event) => {
     setTermsAccepted(event.target.checked);
-   
-  };
 
+  };
+  if(token){
+    navigate('/')
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,9 +57,9 @@ const SignUp = () => {
       return
     }
     setLoading(true)
-    setError( '')
+    setError('')
 
- 
+
 
     console.log(name, image, email, password, password2, account);
 
@@ -67,17 +78,20 @@ const SignUp = () => {
           .then((result) => {
             const currentUser = { displayName: name, photoURL: data?.data?.display_url }
             updateUserProfile(currentUser)
-            const users = { name, email, password, account ,  createdAt: new Date().toISOString() , photoURL: data?.data?.display_url } ;
+            setCreateUserEmail(email)
+            const users = { name, email, password, account, createdAt: new Date().toISOString(), photoURL: data?.data?.display_url };
 
             fetch('http://192.168.1.103:5000/users', {
               method: 'POST',
               headers: {
-                "content-type": "application/json"},
+                "content-type": "application/json"
+              },
               body: JSON.stringify(users,)
             })
               .then(res => res.json())
               .then(data => {
-                setCreateUserEmail(email)
+               
+            
               })
               .then(() => {
                 // navigate('/home')
@@ -90,12 +104,12 @@ const SignUp = () => {
             if (user.uid) {
               toast("Registration successful", {
                 position: toast.POSITION.TOP_CENTER
-                
+
               })
-              navigate(from, { replace: true });
+              // navigate(from, { replace: true });
               setLoading(false)
             }
-            navigate(from, { replace: true });
+            // navigate(from, { replace: true });
             // window.location.reload(setTimeout(9000));
           })
           .catch((e) => {
@@ -104,10 +118,10 @@ const SignUp = () => {
             setLoading(false)
             // setLoading(false)
           });
-        })
+      })
       .catch(err => console.log(err))
     // setLoading(false)
-  
+
 
     // createUser(email, password)
     //   .then((result) => {
@@ -168,6 +182,12 @@ const SignUp = () => {
         setLoading(false)
       })
   }
+
+ 
+
+
+
+
   return (
     <div className="md:mx-6">
       <div className="w-full justify-around my-8 lg:flex">

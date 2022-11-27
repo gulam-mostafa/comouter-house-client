@@ -12,10 +12,10 @@ const MyOrder = () => {
 
     useEffect(() => {
         fetch(`http://192.168.1.103:5000/orders?email=${user?.email}`, {
-            // headers: {
-            //     authorization: `bearer ${localStorage.getItem('token')}`
-            // }
-           
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+
 
         })
             .then(res => {
@@ -24,7 +24,7 @@ const MyOrder = () => {
                 // }
                 setLoader(true)
                 return res.json()
-                
+
 
             })
             .then(data => {
@@ -59,9 +59,9 @@ const MyOrder = () => {
                                 Price
                             </Table.HeadCell>
                             <Table.HeadCell>
-                               Payment
+                                Payment
                                 <span className="sr-only text-red-500">
-                                   Payment
+                                    Payment
                                 </span>
                             </Table.HeadCell>
                         </Table.Head>
@@ -81,25 +81,25 @@ const MyOrder = () => {
                                         {order.types}
                                     </Table.Cell>
                                     <Table.Cell>
-                                    {order.price}
+                                        {order.price}
                                     </Table.Cell>
                                     <Table.Cell>
-                                      {
-                                        !order.paid &&   <Link
-                                        to={`/dashboard/payment/${order._id}`}
-                                        className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                                    >
-                                        Pay
-                                    </Link>
-                                      }
                                         {
-                                        order.paid &&   <Link
-                                        to={`/dashboard/payment/${order._id}`}
-                                        className="font-medium text-green-600 hover:underline dark:text-blue-500"
-                                    >
-                                        Paid
-                                    </Link>
-                                      }
+                                            !order.paid && <Link
+                                                to={`/dashboard/payment/${order._id}`}
+                                                className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+                                            >
+                                                Pay
+                                            </Link>
+                                        }
+                                        {
+                                            order.paid && <Link
+                                                to={`/dashboard/payment/${order._id}`}
+                                                className="font-medium text-green-600 hover:underline dark:text-blue-500"
+                                            >
+                                                Paid
+                                            </Link>
+                                        }
 
 
 
