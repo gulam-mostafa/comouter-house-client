@@ -23,6 +23,7 @@ import AddItem from '../Pages/AddItem';
 import MyWishList from '../Pages/MyWishList';
 import MyBuyer from '../Pages/MyBuyer';
 import MyAllProduct from '../Pages/MyAllProduct';
+import Payment from '../Pages/Payment';
  
 export const Routes = createBrowserRouter([
     {
@@ -117,6 +118,12 @@ export const Routes = createBrowserRouter([
             {
                 path : '/dashboard/myallproduct',
                 element: <MyAllProduct></MyAllProduct>,
+               
+            },
+            {
+                path : '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({params}) => fetch(`http://192.168.1.103:5000/orders/${params.id}`)
                
             },
         ]

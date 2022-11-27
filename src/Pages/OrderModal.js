@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../Components/Context/AuthProvider';
 
 const OrderModal = ({ item, itemData, refetch ,  setItemData}) => {
-    const { name, img, area, Condition, _id, email: e, color, orginal_price, price, rating, createdAt, location, title, types, } = itemData
+    const { name, img, area, Condition, _id: orderid, email: e, color, orginal_price, price, rating, createdAt, location, title, types, } = itemData
     console.log('order', e)
     const { user } = useContext(AuthContext)
     const myTimeout = setTimeout( 90000);
@@ -18,7 +18,7 @@ const OrderModal = ({ item, itemData, refetch ,  setItemData}) => {
         const displayName = form.displayName.value
         const id = form.id.value
         const email = form.email.value
-        const price = form.price.value
+        const area = form.area.value
         const photoURL = form.photoURL.value
         const types = form.types.value
      
@@ -28,9 +28,9 @@ const OrderModal = ({ item, itemData, refetch ,  setItemData}) => {
         const order = {
             title, name, img, displayName, 
             price, photoURL, types, location, color, orginal_price, 
-            createdAt: new Date().toISOString(), email, sellermail: e, 
+            createdAt: new Date().toISOString(), email, sellermail: e, orderid, area: area,
         }
-        console.log(order)
+        console.log('ami', price)
 
 
 
@@ -77,6 +77,7 @@ const OrderModal = ({ item, itemData, refetch ,  setItemData}) => {
                     <label htmlFor="Add-modal" className="btn btn-sm btn-circle absolute  right-2 top-2">✕</label>
                     <h3  className="text-lg text-center text-purple-600 font-bold w-10/12 mx-auto">{title}</h3>
                     <h3  className="text-lg text-center text-purple-600 font-bold w-10/12 mx-auto">Seller Email: {e}</h3>
+                    <h3  className="text-lg text-center text-purple-600 font-bold w-10/12 mx-auto">Price {price}</h3>
                     <h3  className="text-lg text-center text-purple-600 font-bold w-10/12 mx-auto">Seller Location {location}</h3>
                     <h3 className="text-lg font-bold w-10/12 text-center  mx-auto">Name: {user?.displayName}</h3>
                     <form
@@ -85,20 +86,19 @@ const OrderModal = ({ item, itemData, refetch ,  setItemData}) => {
                            
                         
                         <input type="text" name='types' disabled defaultValue={types} className="input input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
-                        <input type="text" name='id' disabled defaultValue={_id} className="input hidden input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
+                        <input type="text" name='id' disabled defaultValue={orderid} className="input hidden input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
                        
                         <input type="text" name='photoURL' disabled defaultValue={user?.photoURL}  className="input hidden input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
                        
-                        <input type="text" name='price' disabled defaultValue={'$' + price} className="input input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
-                        {/* email  */}
+                        
                         <input type="text" name='email' disabled defaultValue={user?.email} className="input input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
                         {/* mail/  */}
                       
-                      
+                        <input type="text" name='displayName' disabled defaultValue={user?.displayName } className="input input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
                         <input type="text" name='title' disabled defaultValue={title} className="input hidden input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
                        
-                        <input type="text" name='area'  defaultValue= {area} placeholder='your area'  className="input input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
-                        <input type="text" name='displayName' defaultValue={user?.displayName } className="input input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
+                        <input type="text" name='area'  defaultValue= {location} placeholder='your Location'  className="input input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
+                        
                         <input type="text" name='mobile' defaultValue={'+880 '} className="input input-bordered input-primary w-full mb-1 mx-4 mt-1 " />
 
 

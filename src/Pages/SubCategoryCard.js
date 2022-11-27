@@ -9,7 +9,7 @@ import OrderModal from './OrderModal';
 const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
     const { user } = useContext(AuthContext)
     const { name, img, area, Condition, _id, color, email: email1,  orginal_price, price, rating, createdAt, location, title, types, } = item
-    // console.log(item)
+    console.log(price)
 
 
     // handle reporded 

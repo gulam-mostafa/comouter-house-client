@@ -1,5 +1,6 @@
 import { Table } from 'flowbite-react';
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../Components/Context/AuthProvider';
 import Loading from '../Components/Loading';
 
@@ -7,7 +8,7 @@ const MyOrder = () => {
     const [orders, setOrders] = useState();
     const { user, logOut, } = useContext(AuthContext)
     const [loader, setLoader] = useState(false)
-    // console.log(orders.length)
+    console.log(orders)
 
     useEffect(() => {
         fetch(`http://192.168.1.103:5000/orders?email=${user?.email}`, {
@@ -80,15 +81,28 @@ const MyOrder = () => {
                                         {order.types}
                                     </Table.Cell>
                                     <Table.Cell>
-                                        {order.price}
+                                    {order.price}
                                     </Table.Cell>
                                     <Table.Cell>
-                                        <a
-                                            href="/tables"
-                                            className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                                        >
-                                            Pay
-                                        </a>
+                                      {
+                                        !order.paid &&   <Link
+                                        to={`/dashboard/payment/${order._id}`}
+                                        className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+                                    >
+                                        Pay
+                                    </Link>
+                                      }
+                                        {
+                                        order.paid &&   <Link
+                                        to={`/dashboard/payment/${order._id}`}
+                                        className="font-medium text-green-600 hover:underline dark:text-blue-500"
+                                    >
+                                        Paid
+                                    </Link>
+                                      }
+
+
+
                                     </Table.Cell>
                                 </Table.Row>
 
