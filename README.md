@@ -9,8 +9,16 @@ product on this site.\
 * Database: Firebase and Mongodb
 * Tools: Visual Code.
 * Chrome debug tools
+* 
+# CSS framework
+* Tailwind 
+* Folwbite Component Librery
 
 
+
+# Admin Users
+email: neamulhoque33@gmail.com 
+pass: 123456
 
 
 Website Link: https://computers-house.web.app/
