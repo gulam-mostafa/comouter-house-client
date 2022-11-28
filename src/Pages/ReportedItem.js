@@ -9,7 +9,7 @@ const ReportedItem = () => {
     const { data: reported = [], refetch } = useQuery({
         queryKey: ['reported'],
         queryFn: async () => {
-            const res = await fetch(`http://192.168.1.103:5000/itemsrep?roles=reported`,{
+            const res = await fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/itemsrep?roles=reported`,{
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -25,7 +25,7 @@ const ReportedItem = () => {
     const handleDelete = id => {
         const sureDelete = window.confirm("Are Your Sure, you want delete")
         if (sureDelete) {
-            fetch(`http://192.168.1.103:5000/items/delete/${id}`,
+            fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/items/delete/${id}`,
                 {
                     method: "DELETE"
                 })

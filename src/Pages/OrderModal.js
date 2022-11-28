@@ -35,7 +35,7 @@ const OrderModal = ({ item, itemData, refetch ,  setItemData}) => {
 
 
 
-        fetch(`http://192.168.1.103:5000/orders`, {
+        fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/orders`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

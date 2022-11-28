@@ -45,12 +45,14 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
 
-        setLoginUserEmail(user.email)
+  
 
         const currentUser = {
           email: user.email,
         };
         if (user.uid) {
+          setLoginUserEmail(user.email)
+        
           toast("Login successful", {
             position: toast.POSITION.TOP_CENTER,
           });

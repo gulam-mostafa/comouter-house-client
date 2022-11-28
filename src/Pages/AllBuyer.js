@@ -16,7 +16,7 @@ const AllBuyer = () => {
         queryKey: ['users'],
 
         queryFn: async () => {
-            const res = await fetch(`http://192.168.1.103:5000/users?account=buyer`,{
+            const res = await fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users?account=buyer`,{
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -31,7 +31,7 @@ const AllBuyer = () => {
     const handleDelete = id => {
         const sureDelete = window.confirm("Are Your Sure, you want delete")
         if (sureDelete) {
-            fetch(`http://192.168.1.103:5000/users/delete/${id}`,
+            fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users/delete/${id}`,
                 {
                     method: "DELETE"
                 })

@@ -11,7 +11,7 @@ const MyOrder = () => {
     console.log(orders)
 
     useEffect(() => {
-        fetch(`http://192.168.1.103:5000/orders?email=${user?.email}`, {
+        fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/orders?email=${user?.email}`, {
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }

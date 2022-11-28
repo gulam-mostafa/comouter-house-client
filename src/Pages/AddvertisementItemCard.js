@@ -13,7 +13,7 @@ const {name, img, area, Condition, _id:id, color, email: email1,  orginal_price,
 
 const adsToBooking = { name, img, area, Condition, color, orginal_price, id, price, rating, createdAt: new Date().toISOString(), location, title, types, email: user?.email }
     const handleWishList = id => {
-        fetch(`http://192.168.1.103:5000/order`, {
+        fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/order`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
@@ -41,7 +41,7 @@ const adsToBooking = { name, img, area, Condition, color, orginal_price, id, pri
         queryKey: ['selleruser'],
 
         queryFn: async () => {
-            const res = await fetch(`http://192.168.1.103:5000/users?account=seller`,{
+            const res = await fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users?account=seller`,{
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }

@@ -14,7 +14,7 @@ const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
 
     // handle reporded 
     const handleRepotedUsers = id => {
-        fetch(`http://192.168.1.103:5000/items/report/${id}`, {
+        fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/items/report/${id}`, {
             method: "PUT",
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -34,7 +34,7 @@ const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
     // console.log(wishItem)
     // handle wishlist
     const handleWishList = id => {
-        fetch(`http://192.168.1.103:5000/wish`, {
+        fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/wish`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
@@ -45,7 +45,7 @@ const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
                 // console.log(data);
                 if (data.acknowledged) {
                     //    alert('order success')
-                    toast("added to whs list", {
+                    toast("added to order  list", {
                         position: toast.POSITION.TOP_CENTER,
                     });
                 }

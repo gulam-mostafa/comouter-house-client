@@ -23,7 +23,7 @@ const SignUp = () => {
 
   const [createUserEmail, setCreateUserEmail] = useState('')
 
-
+console.log(createUserEmail)
   // jwt use hook token
   const [token] = useToken(createUserEmail);
 
@@ -34,7 +34,7 @@ const SignUp = () => {
 
 
 
-  // console.log(termsAccepted)
+  // cffffffffffff
   const termsAndCondition = (event) => {
     setTermsAccepted(event.target.checked);
 
@@ -76,20 +76,23 @@ const SignUp = () => {
           .then((result) => {
             const currentUser = { displayName: name, photoURL: data?.data?.display_url }
             updateUserProfile(currentUser)
-            setCreateUserEmail(email)
-            const users = { name, email, password, account, createdAt: new Date().toISOString(), photoURL: data?.data?.display_url };
+            
+            const users =  { name, email, password, account, createdAt: new Date().toISOString(), photoURL: data?.data?.display_url };
 
-            fetch('http://192.168.1.103:5000/users', {
+            fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users', {
               method: 'POST',
               headers: {
                 "content-type": "application/json"
               },
-              body: JSON.stringify(users,)
+              body: JSON.stringify(users)
             })
               .then(res => res.json())
-              .then(data => {
-
-
+              .then(data =>  {
+                
+                console.log(email)
+                setCreateUserEmail(email)
+               
+               
               })
               .then(() => {
                 // navigate('/home')
@@ -99,10 +102,12 @@ const SignUp = () => {
             console.log(user)
             setLoading(false)
             setError("");
-            if (user.uid) {
+            if (user.email) {
+              console.log(user.email)
+             
               toast("Registration successful", {
                 position: toast.POSITION.TOP_CENTER
-
+                
               })
               // navigate(from, { replace: true });
               setLoading(false)
@@ -138,7 +143,7 @@ const SignUp = () => {
           toast("Login successful", {
             position: toast.POSITION.TOP_CENTER,
           });
-          setCreateUserEmail(user.email)
+        
           // navigate(from, { replace: true });
         }
       })
