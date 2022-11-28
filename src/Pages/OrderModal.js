@@ -46,7 +46,7 @@ const OrderModal = ({ item, itemData, refetch ,  setItemData}) => {
                 // console.log(data);
                 if (data.acknowledged) {
                     //    alert('order success')
-                    toast("Order successful", {
+                    toast("place successful, place go order list and pay", {
                         position: toast.POSITION.TOP_CENTER,
                       });
                       setItemData(null)

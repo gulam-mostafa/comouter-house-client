@@ -245,7 +245,7 @@ console.log(createUserEmail)
               </div>
               <TextInput
                 id="password"
-                type="text"
+                type="password"
                 name="password"
                 required
                 shadow
@@ -258,7 +258,7 @@ console.log(createUserEmail)
               </div>
               <TextInput
                 id="password2"
-                type="text"
+                type="password"
                 required
                 shadow
                 name="password2"

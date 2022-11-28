@@ -182,7 +182,7 @@ const Login = () => {
             </div>
             <TextInput
               id="password2"
-              type="text"
+              type="password"
               name="password"
               required
               shadow={true}

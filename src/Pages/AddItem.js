@@ -245,11 +245,12 @@ const AddItem = () => {
                     <TextInput
                         name="total"
                         type="number"
-                        defaultValue={'1'}
+                        defaultValue={'2'}
                         placeholder='Total items'
                         required={true}
                         shadow={true}
                         disabled
+                        hidden
                     />
                 </div>
                 <div>

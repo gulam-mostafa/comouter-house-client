@@ -62,13 +62,17 @@ const adsToBooking = { name, img, area, Condition, color, orginal_price, id, pri
 
 
                     <div className='flex justify-between'>
-                        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{ad.displayName}</h5>
+                        <h5 className="text-sm  tracking-tight text-gray-900 dark:text-white">Seller name: {ad.displayName}</h5>
                         {ad.role &&
-                            <img className='w-12' src="https://i.ibb.co/1bSH6hb/check.png" alt="" />
+                            <img className='w-12 ' src="https://i.ibb.co/1bSH6hb/check.png" alt="" />
                         }
                     </div>
-                    <p className="font-normal text-gray-700 dark:text-gray-400">{ad.email}</p>
-                    <p className="font-normal text-gray-700 dark:text-gray-400">{ad.condition}</p>
+                    <p className="font-normal text-gray-700 text-xs dark:text-gray-400"> Seller Email: {ad.email}</p>
+                    <p className=" text-xl font-bold text-gray-700 dark:text-gray-400">{ad.title}</p>
+                   
+                    <p className="font-normal text-gray-700 dark:text-gray-400">{ad.types}</p>
+                    <p className="font-normal text-gray-700 dark:text-gray-400">Condition: {ad.condition}</p>
+                    <p className="font-normal text-gray-700 dark:text-gray-400">{ad.description?.slice(0,200)}</p>
                     <p className="font-normal text-gray-700 dark:text-gray-400">Post Date: {ad.createdAt?.slice(0, 10)} Time {ad.createdAt?.slice(11, -5)}</p>
                     <div className='flex justify-around'>
                         <p className="font-normal text-gray-700 dark:text-gray-400">Price $ {ad.price}</p>

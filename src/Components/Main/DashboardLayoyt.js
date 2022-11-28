@@ -60,7 +60,7 @@ const DashboardLayoyt = () => {
                 {isSeller  &&
                   <>
                     <li ><Link to='/dashboard/mybuyer'>My Buyer</Link></li>
-                    <li ><Link to='/dashboard/additem'> Add a item</Link></li>
+                    <li ><Link to='/dashboard/additem'> Add a Product</Link></li>
                     <li ><Link to='/dashboard/myallproduct'>My All Products</Link></li>
 
                   </>
