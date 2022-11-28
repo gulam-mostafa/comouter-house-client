@@ -9,17 +9,20 @@ import { toast } from "react-toastify";
 import Loading from "../Components/Loading";
 import { async } from "@firebase/util";
 import useToken from "../Components/Hooks/useToken";
+import { useTitle } from "../Components/Hooks/useTitle";
 const imageHostKey = process.env.REACT_APP_imgbb_key
 
 
 
 const SignUp = () => {
+  useTitle('signup')
   const { logout, updateUserProfile, providerLogin, createUser } =
     useContext(AuthContext);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   const location = useLocation();
+  const [loginUserEmail, setLoginUserEmail] = useState('')
 
   const [createUserEmail, setCreateUserEmail] = useState('')
 
@@ -124,33 +127,44 @@ console.log(createUserEmail)
       .catch(err => console.log(err))
 
   };
-  // const handleUpdateUserProfile = (name, photo) => {
-  // const profile = {
-  //   displayName: name,
-  //   photoURL: imageURL,
-  // };
-  // updateUserProfile(profile)
-  //   .then(() => { })
-  //   .catch((e) => console.log(e));
-  // };
-  const handleGoogleLogin = () => {
+
+
+
+
+   const handleGoogleLogin = () => {
     providerLogin(googleProvider)
       .then((result) => {
-        const user = result.user
-
-
-        if (user.uid) {
-          toast("Login successful", {
-            position: toast.POSITION.TOP_CENTER,
-          });
-        
-          // navigate(from, { replace: true });
+        const user = result.user;
+        const userInfo = {
+          displayName: user.displayName,
+          email: user.email,
         }
+        updateUserProfile(userInfo)
+          .then(() => {
+            saveUser(user.displayName, user.email, 'buyer')
+          })
+          .catch(error => console.error(error))
       })
       .catch((error) => {
-
-        setError(error.message)
-        setLoading(false)
+        setError(error.message);
+      });
+  }
+  const saveUser = (displayName, email, account) => {
+    const user = { displayName, email, account }
+    fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users', {
+      method: 'POST',
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+      .then(res => res.json())
+      .then(data => {
+        setCreateUserEmail(user.email)
+        console.log(user.email)
+        toast("sign up  successful", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       })
   }
 

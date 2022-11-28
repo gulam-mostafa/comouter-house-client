@@ -6,9 +6,9 @@ import { AuthContext } from '../Components/Context/AuthProvider';
 import '../Home/Navbar/Navbar.css'
 import OrderModal from './OrderModal';
 
-const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
+const SubCategoryCard = ({ item, setProduct, setItemData, refetch }) => {
     const { user } = useContext(AuthContext)
-    const { name, img, area, Condition, _id, color, email: email1,  orginal_price, price, rating, createdAt, location, title, types, } = item
+    const { name, img, area, Condition, _id, color, email: email1, orginal_price, price, rating, createdAt, location, title, types, total, } = item
     // console.log(price)
 
 
@@ -53,7 +53,7 @@ const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
                     toast.error(data.message)
                 }
             })
-            
+
     };
 
 
@@ -78,7 +78,7 @@ const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
                     </Link>
                     <Link >
                         <p className="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
-                            <small>Sale for {user?.displayName}</small>
+                            <small>Sale for {user?.displayName} </small>
                         </p>
                         <p className="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
                             <small> {email1}</small>
@@ -87,8 +87,8 @@ const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
                             <small>Location {location}, {area}</small>
                         </p>
                         <p className="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
-                            <small>Date {createdAt.slice(0, 10)}</small>
-                            <small> time {createdAt.slice(11, -8)}</small>
+                            <small>Date {createdAt?.slice(0, 10)}</small>
+                            <small> time {createdAt?.slice(11, -8)}</small>
                         </p>
                         <p ><small className='bg-yellow-50'>category: {types}</small></p>
                     </Link>
@@ -120,23 +120,34 @@ const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
                           
                         </Link> */}
 
+
                         {
                             user?.uid ?
-                                (<div className="">
-                                    <label
-                                        htmlFor="Add-modal"
-                                        className="btn btn-primary bgColor textColor "
-                                        onClick={() => setItemData(item)}
-                                    >  BooK now</label>
 
-                                </div>) :
+
+                                (total >= 4 ?
+                                    <div className="">
+                                        <label
+                                            htmlFor="Add-modal"
+                                            className="btn btn-primary bgColor textColor "
+                                            onClick={() => setItemData(item)}
+                                        >  BooK now</label>
+
+                                    </div>
+                                    :
+                                    <input className='btn btn-xs' disabled defaultValue={'Sold'} type="text" />
+                                )
+
+
+
+                                :
                                 (
                                     <Link to='/login' className='btn btn-primary btn-xs'>sign in after buy</Link>
                                 )
                         }
 
                     </div>
-                 
+
                 </div>
             </div>
         </div>

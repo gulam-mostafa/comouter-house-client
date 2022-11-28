@@ -66,7 +66,7 @@ const AllsellerCard = ({ seller, handleMakeSeller, handleDelete }) => {
                         <span className="text-sm text-gray-500 dark:text-gray-400">
                             {account}
                         </span>
-                        <small>Join Date {createdAt.slice(0, 10)}</small>
+                        <small>Join Date {createdAt?.slice(0, 10)}</small>
                         <div className="mt-4 flex flex-col space-x-3 lg:mt-6">
                             {
                                 role !== 'sale' &&

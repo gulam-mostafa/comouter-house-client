@@ -5,21 +5,23 @@ import AllsellerCard from './AllsellerCard';
 import { useQuery } from '@tanstack/react-query';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../Components/Context/AuthProvider';
+import { useTitle } from '../Components/Hooks/useTitle';
 
 
 
 const AllSeller = () => {
+    useTitle(' all Buyer')
     const sellerUsers = useLoaderData()
     // const allSellers = sellerUsers[0].account
     // console.log(sellerUsers[0])
     const [users1, setUsers1] = useState([])
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     const { data: users = [], refetch } = useQuery({
-        
+
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users?account=seller`,{
+            const res = await fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users?account=seller`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -54,7 +56,7 @@ const AllSeller = () => {
             fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users/delete/${id}`,
 
                 {
-                    
+
                     method: "DELETE",
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`

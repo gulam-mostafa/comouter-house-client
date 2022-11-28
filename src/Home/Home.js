@@ -1,6 +1,7 @@
 import { Carousel } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { useTitle } from "../Components/Hooks/useTitle";
 import Loading from "../Components/Loading";
 import AddvertisementItem from "../Pages/AddvertisementItem";
 import bg from './banner-computer.png'
@@ -8,6 +9,7 @@ import CategoryCard from "./CategoryCard";
 
 
 const Home = ({ items }) => {
+    useTitle('Home')
     // const selectedItems = useLoaderData()
     // const totalItems = selectedItems.length
 

@@ -3,8 +3,10 @@ import { useLoaderData } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Table } from 'flowbite-react';
 import { toast } from 'react-toastify';
+import { useTitle } from '../Components/Hooks/useTitle';
 
 const AllBuyer = () => {
+    useTitle(' All buyer')
     const buyerUser = useLoaderData()
     const allbuyer = buyerUser[0].account
 
@@ -16,7 +18,7 @@ const AllBuyer = () => {
         queryKey: ['users'],
 
         queryFn: async () => {
-            const res = await fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users?account=buyer`,{
+            const res = await fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users?account=buyer`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -99,7 +101,7 @@ const AllBuyer = () => {
                                     {buyer.email}
                                 </Table.Cell>
                                 <Table.Cell>
-                                    {buyer.createdAt.slice(0, -14)}
+                                    {buyer.createdAt?.slice(0, -14)}
                                 </Table.Cell>
                                 <Table.Cell>
                                     {buyer.account}

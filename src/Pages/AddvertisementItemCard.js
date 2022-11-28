@@ -69,7 +69,7 @@ const adsToBooking = { name, img, area, Condition, color, orginal_price, id, pri
                     </div>
                     <p className="font-normal text-gray-700 dark:text-gray-400">{ad.email}</p>
                     <p className="font-normal text-gray-700 dark:text-gray-400">{ad.condition}</p>
-                    <p className="font-normal text-gray-700 dark:text-gray-400">Post Date: {ad.createdAt.slice(0, 10)} Time {ad.createdAt.slice(11, -5)}</p>
+                    <p className="font-normal text-gray-700 dark:text-gray-400">Post Date: {ad.createdAt?.slice(0, 10)} Time {ad.createdAt?.slice(11, -5)}</p>
                     <div className='flex justify-around'>
                         <p className="font-normal text-gray-700 dark:text-gray-400">Price $ {ad.price}</p>
                         <p className="font-normal text-gray-700 dark:text-gray-400">Price $ {ad.rating}</p>

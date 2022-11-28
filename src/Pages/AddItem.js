@@ -4,10 +4,12 @@ import React, { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Components/Context/AuthProvider';
+import { useTitle } from '../Components/Hooks/useTitle';
 import Loading from '../Components/Loading';
 const imageHostKey = process.env.REACT_APP_imgbb_key
 
 const AddItem = () => {
+    useTitle('Add item ')
     const { user, logout, updateUserProfile, providerLogin, createUser } =
         useContext(AuthContext);
     const [error, setError] = useState("");
@@ -16,7 +18,7 @@ const AddItem = () => {
     const location = useLocation();
 
 
-    const { data: selleruser = [],  } = useQuery({
+    const { data: selleruser = [], } = useQuery({
         queryKey: ['selleruser'],
 
         queryFn: async () => {
@@ -26,10 +28,10 @@ const AddItem = () => {
             return data;
         }
     })
-    const role= selleruser[0]?.role;
-    const roles= selleruser[0];
+    const role = selleruser[0]?.role;
+    const roles = selleruser[0];
 
-//    console.log(selleruser[0]?.role)
+    //    console.log(selleruser[0]?.role)
 
     const handleAddItem = (event) => {
         event.preventDefault()
@@ -243,9 +245,11 @@ const AddItem = () => {
                     <TextInput
                         name="total"
                         type="number"
+                        defaultValue={'1'}
                         placeholder='Total items'
                         required={true}
                         shadow={true}
+                        disabled
                     />
                 </div>
                 <div>
@@ -276,11 +280,11 @@ const AddItem = () => {
                     <input required type="file" name='img' className="file-input file-input-bordered file-input-sm w-full max-w-xs" />
                 </div>
 
-               {
-                loading? (<Loading></Loading>) :( <Button className='mb-8' type="submit">
-                Add product
-            </Button>)
-               }
+                {
+                    loading ? (<Loading></Loading>) : (<Button className='mb-8' type="submit">
+                        Add product
+                    </Button>)
+                }
             </form>
         </div>
     );

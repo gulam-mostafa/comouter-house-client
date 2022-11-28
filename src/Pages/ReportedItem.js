@@ -90,7 +90,7 @@ const ReportedItem = () => {
                                     {report.location}
                                 </Table.Cell>
                                 <Table.Cell>
-                                    {report.createdAt.slice(0, -14)}
+                                    {report.createdAt?.slice(0, -14)}
                                 </Table.Cell>
                                 <Table.Cell>
                                     {report.types}

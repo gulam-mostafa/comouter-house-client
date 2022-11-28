@@ -1,8 +1,10 @@
+import { isAdmin } from "@firebase/util";
 import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Components/Context/AuthProvider";
+import Loading from "../../Components/Loading";
 import './Navbar.css'
 
 
@@ -63,12 +65,21 @@ const Navbar1 = () => {
                   />
                 }
               >
-                {user?.photoURL ? (
+                {user?.uid ? (
+                 user?.photoURL?
                   <img
-                    className=" rounded-full mx-auto  h-20 w-20 "
-                    src={user?.photoURL}
-                    alt=""
-                  />
+                  className=" rounded-full mx-auto  h-20 w-20 "
+                  src={user?.photoURL}
+                  alt=""
+                />:
+                <Avatar
+                alt="User settings"
+                img="https://i.ibb.co/YWyS5Mj/avatar.png"
+                rounded
+                className="w-10 h-10 rounded-full"
+              />
+
+                 
                 ) : (
                   <Avatar
                     alt="User settings"
@@ -85,12 +96,12 @@ const Navbar1 = () => {
                   </span>
                 </Dropdown.Header >
                {
-                user?.email?
-                <Dropdown.Item><Link to='/dashboard'>Dashboard</Link></Dropdown.Item> :
-                <h3>o</h3>
+                isAdmin &&
+                <Dropdown.Item><Link to='/dashboard'>Dashboard</Link></Dropdown.Item> 
+                
                }
                 <Dropdown.Item><Link to='/myorder'>My Order</Link></Dropdown.Item>
-                <Dropdown.Item>Earnings</Dropdown.Item>
+              
                 <Dropdown.Divider />
                 <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>
               </Dropdown>

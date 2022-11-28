@@ -111,7 +111,7 @@ const MyAllProduct = () => {
                                     {product.color}
                                 </Table.Cell>
                                 <Table.Cell>
-                                    {product.createdAt.slice(0, -14)}
+                                    {product.createdAt?.slice(0, -14)}
                                 </Table.Cell>
                                 <Table.Cell>
                                     {product.types}

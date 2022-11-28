@@ -1,5 +1,6 @@
 import { Table } from 'flowbite-react';
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../Components/Context/AuthProvider';
 import Loading from '../Components/Loading';
 
@@ -57,9 +58,9 @@ const MyWishList = () => {
                                 Price
                             </Table.HeadCell>
                             <Table.HeadCell>
-                                edit
+                                Pay
                                 <span className="sr-only text-red-500">
-                                    Edit
+                                    Pay
                                 </span>
                             </Table.HeadCell>
                         </Table.Head>
@@ -82,12 +83,12 @@ const MyWishList = () => {
                                         {order.price}
                                     </Table.Cell>
                                     <Table.Cell>
-                                        <a
-                                            href="/tables"
+                                        <Link to='/dashboard/myorder'
+                                            
                                             className="font-medium text-blue-600 hover:underline dark:text-blue-500"
                                         >
-                                            Edit
-                                        </a>
+                                           Pay
+                                        </Link>
                                     </Table.Cell>
                                 </Table.Row>
 

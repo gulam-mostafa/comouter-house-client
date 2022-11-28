@@ -13,12 +13,14 @@ import { toast } from "react-toastify";
 import Loading from "../Components/Loading";
 import app from "../firebase/firebase.config";
 import useToken from "../Components/Hooks/useToken";
+import { useTitle } from "../Components/Hooks/useTitle";
 
 const Login = () => {
+  useTitle('login')
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [loginUserEmail, setLoginUserEmail] = useState('')
-  const [token] =useToken(loginUserEmail)
+  const [token] = useToken(loginUserEmail)
   const [userEmail, setUserEmail] = useState("");
   console.log(error);
   const { user, logout, signIn, redirect, providerLogin, forgotPassword, updateUserProfile } =
@@ -27,7 +29,7 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  if(token){
+  if (token) {
     navigate(from, { replace: true });
   }
 
@@ -45,18 +47,18 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
 
-  
+
 
         const currentUser = {
           email: user.email,
         };
         if (user.uid) {
           setLoginUserEmail(user.email)
-        
+
           toast("Login successful", {
             position: toast.POSITION.TOP_CENTER,
           });
-        
+
           setLoading(false);
         }
         console.log(currentUser);
@@ -72,28 +74,37 @@ const Login = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-
-        const userInfo={
+        const userInfo = {
           displayName: user.displayName,
           email: user.email,
-
         }
         updateUserProfile(userInfo)
-       
-
-
-        if (user.uid) {
-          toast("Login successful", {
-            position: toast.POSITION.TOP_CENTER,
-          });
-          setLoginUserEmail(user.email)
-          // navigate(from, { replace: true });
-        }
+          .then(() => {
+            saveUser(user.displayName, user.email, 'buyer')
+          })
+          .catch(error => console.error(error))
       })
       .catch((error) => {
         setError(error.message);
       });
-  };
+  }
+  const saveUser = (displayName, email, account) => {
+    const user = { displayName, email, account }
+    fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users', {
+      method: 'POST',
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+      .then(res => res.json())
+      .then(data => {
+        setLoginUserEmail(user.email)
+        toast("Login successful", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      })
+  }
 
   const handleFacebookLogin = () => {
     const facebookProvider = new FacebookAuthProvider();
@@ -125,19 +136,19 @@ const Login = () => {
     console.log(userEmail);
 
     forgotPassword(userEmail)
-    .then(() => {
-      setError('')
-      toast("reset mail sent. Check Your mail box", {
-        position: toast.POSITION.TOP_CENTER,
-       
-      } 
-      
-      );
-      
-    }) 
-    .catch((error) => {
-      setError(error.message);
-    });
+      .then(() => {
+        setError('')
+        toast("reset mail sent. Check Your mail box", {
+          position: toast.POSITION.TOP_CENTER,
+
+        }
+
+        );
+
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
     ;
   };
 

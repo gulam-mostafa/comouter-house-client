@@ -2,9 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import { Card } from 'flowbite-react';
 import React, { useContext } from 'react';
 import { AuthContext } from '../Components/Context/AuthProvider';
+import { useTitle } from '../Components/Hooks/useTitle';
 import AddvertisementItemCard from './AddvertisementItemCard';
 
 const AddvertisementItem = () => {
+    useTitle('Home')
     const {selleruser} = useContext(AuthContext)
 
     const { data: ads = [], refetch } = useQuery({
