@@ -25,7 +25,7 @@ const MyAllProduct = () => {
 
     const handleAdvertise = id => {
         fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/items/ad/${id}`, {
-         
+
             method: "PUT",
         })
             .then(res => res.json())
@@ -123,14 +123,16 @@ const MyAllProduct = () => {
                                         product.ads === 'ads' ? (
                                             <p>Live</p>
                                         ) :
-                                            <button
-
-                                                onClick={() => handleAdvertise(product._id)}
-                                                className=" text-blue-600 hover:underline btn lg:btn-xs   text-white"
-                                            >
-                                                Ads.
-                                            </button>
-                                    }
+                                           (
+                                            product.total === 1? 
+                                            <p>Sold</p> : <button
+                                            onClick={() => handleAdvertise(product._id)}
+                                             className=" text-blue-600 hover:underline btn lg:btn-xs   text-white"
+                                         > Ads.</button>
+                                           )
+                                           
+                            
+                                }
                                     {/* {
                                 product.role?
                                 (  

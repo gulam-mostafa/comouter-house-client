@@ -125,7 +125,7 @@ const SubCategoryCard = ({ item, setProduct, setItemData, refetch }) => {
                             user?.uid ?
 
 
-                                (total >= 4 ?
+                                (total >= 2 ?
                                     <div className="">
                                         <label
                                             htmlFor="Add-modal"
