@@ -8,7 +8,7 @@ const MyOrder = () => {
     const [orders, setOrders] = useState();
     const { user, logOut, } = useContext(AuthContext)
     const [loader, setLoader] = useState(false)
-    console.log(orders)
+    // console.log(orders)
 
     useEffect(() => {
         fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/orders?email=${user?.email}`, {

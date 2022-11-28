@@ -15,11 +15,11 @@ const Payment = () => {
     // console.log('check', price)
     // console.log('b', orders._id)
     return (
-        <div>
+        <div className='mx-4'>
             <h3>Payment for {title}</h3>
             <p className="tetx-xl">Payment Amount <strong> {price} </strong></p>
             
-            <div className='w-96 my-8 text-black'>
+            <div className='w-96 my-2 m-auto mx- text-black'>
                 <Elements stripe={stripePromise}>
                     <CheckOutForm 
                     orders={orders}

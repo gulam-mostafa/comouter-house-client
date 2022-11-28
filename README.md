@@ -1,3 +1,34 @@
+
+# About The app
+this About made basically old Good condition  product buy sell. People can sell thiare are
+product on this site.\
+
+# Technology
+* Language Used: Javascript , css, html
+* javascript framework used : React Js
+* Database: Firebase and Mongodb
+* Tools: Visual Code.
+* Chrome debug tools
+
+
+
+
+Website Link: https://computers-house.web.app/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

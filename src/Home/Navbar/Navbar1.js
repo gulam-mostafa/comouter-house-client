@@ -40,7 +40,7 @@ const Navbar1 = () => {
       <Navbar fluid rounded className="  bg-stone- bgColor textColor">
         <Navbar.Brand href="/" className="md:px- lg:px-">
 
-          <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white mr-6 h-6 sm:h-9">
+          <span className="self-center whitespace-nowrap text-2xl lg:text-3xl font-semibold dark:text-white mr-6 h-6 sm:h-9">
             Computer House
           </span>
           <img
