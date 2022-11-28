@@ -8,12 +8,10 @@ import Loading from '../Loading';
 
 const DashboardLayoyt = () => {
   const { user, loading } = useContext(AuthContext)
-  // const sellerUser = useLoaderData()
-  // console.log(sellerUser)
   const [isAdmin] = useAdmin(user?.email)
   const [isSeller] = useSeller(user?.email)
 
-  console.log(isSeller, user.email)
+  // console.log(isSeller, user.email)
   return (
     <div className=''>
       <Navbar1></Navbar1>
@@ -35,12 +33,12 @@ const DashboardLayoyt = () => {
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-64 text-base-content bg-gray-400 lg:bg-white">
 
-            <li ><Link to='/dashboard'> Seller</Link></li>
+       
             {
               <>
 
                 {
-                  !isSeller && <>
+                  !isSeller && !isAdmin && <>
                     <li ><Link to='/dashboard/wish'>My wish List</Link></li>
                     <li ><Link to='/dashboard/myorder'> My Order</Link></li>
 
@@ -49,19 +47,19 @@ const DashboardLayoyt = () => {
                 }
 
                 {
-                  isAdmin && <>
+                  isAdmin  &&<>
 
                     <li ><Link to='/dashboard/allbuyer'> All Buyer</Link></li>
                     <li ><Link to='/dashboard/allseller'> All Seller</Link></li>
                     <li ><Link to='/dashboard/reported'> Reported Items</Link></li>
 
-                    <li ><Link to='/dashboard/mybuyer'>My Buyer</Link></li>
 
                   </>
                 }
 
-                {isSeller && !isSeller &&
+                {isSeller  &&
                   <>
+                    <li ><Link to='/dashboard/mybuyer'>My Buyer</Link></li>
                     <li ><Link to='/dashboard/additem'> Add a item</Link></li>
                     <li ><Link to='/dashboard/myallproduct'>My All Products</Link></li>
 

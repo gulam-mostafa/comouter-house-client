@@ -1,8 +1,39 @@
 import { useQuery } from '@tanstack/react-query';
 import { Button, Card } from 'flowbite-react';
-import React from 'react';
+import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../Components/Context/AuthProvider';
 
 const AddvertisementItemCard = ({ ad }) => {
+    // console.log('advertise', ad)
+    const {user} =useContext(AuthContext)
+
+const {name, img, area, Condition, _id:id, color, email: email1,  orginal_price, price, rating, createdAt, location, title, types,} =ad
+
+
+const adsToBooking = { name, img, area, Condition, color, orginal_price, id, price, rating, createdAt: new Date().toISOString(), location, title, types, email: user?.email }
+    const handleWishList = id => {
+        fetch(`http://192.168.1.103:5000/order`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(adsToBooking )
+        }).then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                if (data.acknowledged) {
+                    //    alert('order success')
+                    toast("added to whs list", {
+                        position: toast.POSITION.TOP_CENTER,
+                    });
+                }
+                else {
+                    toast.error(data.message)
+                }
+            })
+            
+    };
 
 
     // console.log('my check', ad)
@@ -10,13 +41,17 @@ const AddvertisementItemCard = ({ ad }) => {
         queryKey: ['selleruser'],
 
         queryFn: async () => {
-            const res = await fetch(`http://192.168.1.103:5000/users?account=seller`);
+            const res = await fetch(`http://192.168.1.103:5000/users?account=seller`,{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
 
             return data;
         }
     })
-    console.log(ad)
+    // console.log(ad)
 
 
     return (
@@ -39,7 +74,9 @@ const AddvertisementItemCard = ({ ad }) => {
                         <p className="font-normal text-gray-700 dark:text-gray-400">Price $ {ad.price}</p>
                         <p className="font-normal text-gray-700 dark:text-gray-400">Price $ {ad.rating}</p>
                     </div>
-                    <Button>Book now</Button>
+                    <Button 
+                    onClick={() => handleWishList(id)}
+                    >Book now</Button>
                 </Card>
             </div>
 

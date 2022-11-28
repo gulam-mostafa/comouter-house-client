@@ -6,7 +6,7 @@ import { AuthContext } from '../Components/Context/AuthProvider';
 
 const OrderModal = ({ item, itemData, refetch ,  setItemData}) => {
     const { name, img, area, Condition, _id: orderid, email: e, color, orginal_price, price, rating, createdAt, location, title, types, } = itemData
-    console.log('order', e)
+    // console.log('order', e)
     const { user } = useContext(AuthContext)
     const myTimeout = setTimeout( 90000);
     const handleOrder = event => {
@@ -30,7 +30,7 @@ const OrderModal = ({ item, itemData, refetch ,  setItemData}) => {
             price, photoURL, types, location, color, orginal_price, 
             createdAt: new Date().toISOString(), email, sellermail: e, orderid, area: area,
         }
-        console.log('ami', price)
+        // console.log('ami', price)
 
 
 
@@ -43,7 +43,7 @@ const OrderModal = ({ item, itemData, refetch ,  setItemData}) => {
             body: JSON.stringify(order)
         }).then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.acknowledged) {
                     //    alert('order success')
                     toast("Order successful", {

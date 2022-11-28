@@ -9,17 +9,20 @@ import OrderModal from './OrderModal';
 const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
     const { user } = useContext(AuthContext)
     const { name, img, area, Condition, _id, color, email: email1,  orginal_price, price, rating, createdAt, location, title, types, } = item
-    console.log(price)
+    // console.log(price)
 
 
     // handle reporded 
     const handleRepotedUsers = id => {
         fetch(`http://192.168.1.103:5000/items/report/${id}`, {
             method: "PUT",
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 if (data.acknowledged) {
                     toast("Reported to admin", {
                         position: toast.POSITION.TOP_CENTER,
@@ -39,7 +42,7 @@ const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
             body: JSON.stringify(wishItem)
         }).then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.acknowledged) {
                     //    alert('order success')
                     toast("added to whs list", {
@@ -107,7 +110,7 @@ const SubCategoryCard = ({ item, setProduct, setItemData ,refetch }) => {
                     </div>
                     <div className="flex  md:flex-row my-4 gap-3 flex-col items-center justify-around">
                         <span className="text- font-bold text-gray-900 dark:text-white">
-                            Price: {price}
+                            Price: $ {price}
                         </span>
                         {/* <Link
 

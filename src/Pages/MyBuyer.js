@@ -11,17 +11,21 @@ const MyBuyer = () => {
 
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(`http://192.168.1.103:5000/orders/mybuyer?sellermail=${user?.email}`);
+            const res = await fetch(`http://192.168.1.103:5000/orders/mybuyer?sellermail=${user?.email}`,{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
 
 
             return data;
         }
     })
-console.log(buyers)
+// console.log(buyers)
     return (
         <div>
-            <p className='text-center text-3xl my-4' >My Total Buyer <span className='text-red-400'>{buyers.length}</span> People</p>
+            <p className='text-center text-3xl my-4' >Your Total Buyer <span className='text-red-400'>{buyers.length}</span> People</p>
             <div>
 
 
@@ -65,7 +69,7 @@ console.log(buyers)
                                     {buyer.types}
                                 </Table.Cell>
                                 <Table.Cell>
-                                    {buyer.price}
+                                   $ {buyer.price}
                                 </Table.Cell>
                                 <Table.Cell>
                                     <a

@@ -14,7 +14,7 @@ const CheckOutForm = ({orders}) => {
       
     const elements = useElements()
     const {price, email ,title, _id} = orders;
-    console.log(orders._id)
+    // console.log(orders._id)
    
 
     useEffect(() => {
@@ -23,7 +23,7 @@ const CheckOutForm = ({orders}) => {
           method: "POST",
           headers: {
              "Content-Type": "application/json" ,
-        //   authorization: `bearer ${localStorage.getItem('accessToken')}`
+          authorization: `bearer ${localStorage.getItem('accessToken')}`
         
         },
           body: JSON.stringify({ price }),
@@ -74,7 +74,7 @@ const CheckOutForm = ({orders}) => {
             return;
           }
           if(paymentIntent.status === "succeeded"){
-            console.log('card info' , card)
+            // console.log('card info' , card)
             // setSuccess("Congrats your Payment completed")
             // setTransactionId(paymentIntent.id)
             const payment = {
@@ -86,7 +86,7 @@ const CheckOutForm = ({orders}) => {
   
   
             }
-            console.log(payment)
+            // console.log(payment)
   
             fetch('http://192.168.1.103:5000/payments', {
                   method: 'PUT',

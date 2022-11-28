@@ -16,7 +16,11 @@ const AllBuyer = () => {
         queryKey: ['users'],
 
         queryFn: async () => {
-            const res = await fetch(`http://192.168.1.103:5000/users?account=buyer`);
+            const res = await fetch(`http://192.168.1.103:5000/users?account=buyer`,{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
 
             return data;
@@ -33,7 +37,7 @@ const AllBuyer = () => {
                 })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
 
                     if (data.deletedCount > 0) {
                         // alert(" delete successfully")
@@ -53,9 +57,10 @@ const AllBuyer = () => {
 
 
 
-    console.log(users)
+    // console.log(users)
     return (
         <div>
+            <p>All buyer </p>
             <div>
                 <Table striped={true}>
                     <Table.Head>

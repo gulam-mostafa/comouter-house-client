@@ -29,7 +29,7 @@ const AddItem = () => {
     const role= selleruser[0]?.role;
     const roles= selleruser[0];
 
-   console.log(selleruser[0]?.role)
+//    console.log(selleruser[0]?.role)
 
     const handleAddItem = (event) => {
         event.preventDefault()
@@ -72,7 +72,7 @@ const AddItem = () => {
 
                     }
 
-                    console.log(addItem)
+                    // console.log(addItem)
                     fetch('http://192.168.1.103:5000/items', {
                         method: 'POST',
                         headers: {

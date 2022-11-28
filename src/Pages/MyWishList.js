@@ -12,9 +12,9 @@ const MyWishList = () => {
 
     useEffect(() => {
         fetch(`http://192.168.1.103:5000/wish?email=${user?.email}`, {
-            // headers: {
-            //     authorization: `bearer ${localStorage.getItem('token')}`
-            // }
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
 
         })
             .then(res => {
@@ -28,7 +28,7 @@ const MyWishList = () => {
                 // setLoading(false);
                 setWishs(data)
                 setLoader(false)
-                console.log('fdg', data)
+                // console.log('fdg', data)
             })
 
     }, [user?.email])

@@ -10,7 +10,7 @@ const Payment = () => {
 
     const orders = useLoaderData()
     const {name, title, img ,location, createdAt, types, displayName, PhotoURl, price, } = orders
-    console.log('check', price)
+    // console.log('check', price)
     // console.log('b', orders._id)
     return (
         <div>

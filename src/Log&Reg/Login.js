@@ -202,7 +202,7 @@ const Login = () => {
             Register
           </Link>
         </p>
-        <div class="flex justify-between  py-8">
+        <div className="flex justify-between  py-8">
           <div className="flex w-full">
             <div className="flex flex-col w-full border-opacity-50">
               <div className=""></div>

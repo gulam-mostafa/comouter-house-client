@@ -19,15 +19,16 @@ const AllSeller = () => {
         
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(`http://192.168.1.103:5000/users?account=seller`);
+            const res = await fetch(`http://192.168.1.103:5000/users?account=seller`,{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+
+            });
             const data = await res.json();
-
-
             return data;
         }
     })
-
-
     const handleMakeSeller = id => {
         fetch(`http://192.168.1.103:5000/users/sale/${id}`, {
             method: "PUT",
@@ -35,7 +36,7 @@ const AllSeller = () => {
             .then(res => res.json())
             .then(data => {
 
-                console.log(data)
+                // console.log(data)
                 if (data.modifiedCount > 0) {
                     toast("Verified successful", {
                         position: toast.POSITION.TOP_CENTER,
@@ -50,13 +51,18 @@ const AllSeller = () => {
     const handleDelete = id => {
         const sureDelete = window.confirm("Are Your Sure, you want delete")
         if (sureDelete) {
-            fetch(`http://192.168.1.103:5000/users/${id}`,
+            fetch(`http://192.168.1.103:5000/users/delete/${id}`,
+
                 {
-                    method: "DELETE"
+                    
+                    method: "DELETE",
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
                 })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
 
                     if (data.deletedCount > 0) {
                         // alert(" delete successfully")

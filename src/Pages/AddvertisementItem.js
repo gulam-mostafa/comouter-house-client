@@ -11,12 +11,20 @@ const AddvertisementItem = () => {
         queryKey: ['ads'],
 
         queryFn: async () => {
-            const res = await fetch(`http://192.168.1.103:5000/itemsads?ads=ads`);
+            const res = await fetch(`http://192.168.1.103:5000/itemsads?ads=ads`,{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
+            
 
             return data;
         }
     })
+
+    
+
   
  
 // console.log(ads)
@@ -28,7 +36,7 @@ const AddvertisementItem = () => {
                 {
                     ads.map(ad =><AddvertisementItemCard
                     ad={ad}
-                    key={ad._ad}
+                    key={ad._id}
                     ></AddvertisementItemCard>)
                 }
             </div>

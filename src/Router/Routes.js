@@ -24,7 +24,7 @@ import MyWishList from '../Pages/MyWishList';
 import MyBuyer from '../Pages/MyBuyer';
 import MyAllProduct from '../Pages/MyAllProduct';
 import Payment from '../Pages/Payment';
- 
+
 export const Routes = createBrowserRouter([
     {
         path: '/',
@@ -38,7 +38,11 @@ export const Routes = createBrowserRouter([
             {
                 path: '/home',
                 element: <Home></Home>,
-                loader: () => fetch('http://192.168.1.103:5000/category'),
+                loader: () => fetch('http://192.168.1.103:5000/category', {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                }),
             },
             {
                 path: '/login',
@@ -59,73 +63,97 @@ export const Routes = createBrowserRouter([
             {
                 path: '/subcategory/:id',
                 element: <SubCategory></SubCategory>,
-                loader: ({ params }) => fetch(`http://192.168.1.103:5000/items/${params.id}`)
+                loader: ({ params }) => fetch(`http://192.168.1.103:5000/items/${params.id}`, {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                })
             },
-          
+
             {
                 path: '/myorder',
                 element: <MyOrder></MyOrder>
             },
         ]
-        
+
     }
-    ,{
+    , {
         path: '*',
         element: <PageNotFound></PageNotFound>
     },
     {
         path: '/dashboard',
         element: <PriveteRouter><DashboardLayoyt></DashboardLayoyt></PriveteRouter>,
-        loader: () => fetch('http://192.168.1.103:5000/users'),
+        loader: () => fetch('http://192.168.1.103:5000/users', {
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        }),
         children: [
             {
                 path: '/dashboard',
+                element: <Dashboard></Dashboard>
+            },
+            {
+                path: '/dashboard/myorder',
                 element: <MyOrder></MyOrder>
             },
             {
-                path : '/dashboard/myorder',
-                element: <MyOrder></MyOrder>
-            },
-            {
-                path : '/dashboard/allseller',
+                path: '/dashboard/allseller',
                 element: <AdminRoute><AllSeller></AllSeller></AdminRoute>,
-                loader: () => fetch('http://192.168.1.103:5000/users'),
+                loader: () => fetch('http://192.168.1.103:5000/users', {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                }),
             },
             {
-                path : '/dashboard/allbuyer',
+                path: '/dashboard/allbuyer',
                 element: <AdminRoute><AllBuyer></AllBuyer></AdminRoute>,
-                loader: () => fetch('http://192.168.1.103:5000/users'),
+                loader: () => fetch('http://192.168.1.103:5000/users', {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                }),
             },
             {
-                path : '/dashboard/reported',
+                path: '/dashboard/reported',
                 element: <AdminRoute><ReportedItem></ReportedItem></AdminRoute>,
-                loader: () => fetch('http://192.168.1.103:5000/users'),
+                loader: () => fetch('http://192.168.1.103:5000/users', {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                }),
             },
             {
-                path : '/dashboard/additem',
+                path: '/dashboard/additem',
                 element: <AddItem></AddItem>,
-               
+
             },
             {
-                path : '/dashboard/wish',
+                path: '/dashboard/wish',
                 element: <MyWishList></MyWishList>,
-               
+
             },
             {
-                path : '/dashboard/mybuyer',
+                path: '/dashboard/mybuyer',
                 element: <MyBuyer></MyBuyer>,
-               
+
             },
             {
-                path : '/dashboard/myallproduct',
+                path: '/dashboard/myallproduct',
                 element: <MyAllProduct></MyAllProduct>,
-               
+
             },
             {
-                path : '/dashboard/payment/:id',
+                path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({params}) => fetch(`http://192.168.1.103:5000/orders/${params.id}`)
-               
+                loader: ({ params }) => fetch(`http://192.168.1.103:5000/orders/${params.id}`, {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                })
+
             },
         ]
     }

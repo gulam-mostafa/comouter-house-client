@@ -9,14 +9,18 @@ const ReportedItem = () => {
     const { data: reported = [], refetch } = useQuery({
         queryKey: ['reported'],
         queryFn: async () => {
-            const res = await fetch(`http://192.168.1.103:5000/itemsrep?roles=reported`);
+            const res = await fetch(`http://192.168.1.103:5000/itemsrep?roles=reported`,{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
 
 
             return data;
         }
     })
-    console.log(reported[0])
+    // console.log(reported[0])
 
     const handleDelete = id => {
         const sureDelete = window.confirm("Are Your Sure, you want delete")
@@ -27,7 +31,7 @@ const ReportedItem = () => {
                 })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
 
                     if (data.deletedCount > 0) {
                         // alert(" delete successfully")

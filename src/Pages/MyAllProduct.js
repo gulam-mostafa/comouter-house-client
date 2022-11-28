@@ -1,18 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
 import { Table } from 'flowbite-react';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Components/Context/AuthProvider';
 
 const MyAllProduct = () => {
     const { user } = useContext(AuthContext)
-
+    const [users1, setUsers1] = useState(null)
 
     const { data: allProducts = [], refetch } = useQuery({
         queryKey: ['allProducts'],
 
         queryFn: async () => {
-            const res = await fetch(`http://192.168.1.103:5000/myallproducts?email=${user.email}`);
+            const res = await fetch(`http://192.168.1.103:5000/myallproducts?email=${user.email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
 
             return data;
@@ -21,28 +25,53 @@ const MyAllProduct = () => {
 
     const handleAdvertise = id => {
         fetch(`http://192.168.1.103:5000/items/ad/${id}`, {
+         
             method: "PUT",
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 if (data.acknowledged) {
                     toast("Your product is live", {
                         position: toast.POSITION.TOP_CENTER,
                     });
                     refetch()
                 }
-                
+
             })
-          
+
     };
 
+    const handleDelete = id => {
+        const sureDelete = window.confirm("Are Your Sure, you want delete")
+        if (sureDelete) {
+            fetch(`http://192.168.1.103:5000/items/delete/${id}`,
+                {
+                    method: "DELETE"
+                })
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+
+                    if (data.deletedCount > 0) {
+                        // alert(" delete successfully")
+                        toast("your Item delete successfully", {
+                            position: toast.POSITION.TOP_CENTER
+                        });
+                        const remaning = users1.filter(revw => revw._id !== id)
+                        setUsers1(remaning)
+
+                        refetch()
+                    }
+                })
+        }
+    }
 
 
     return (
         <div>
 
-            <p className='text-center text-blue-red-500 text-3xl py-4 underline'>My all items {allProducts.length} </p>
+            <p className='text-center text-blue-red-500 text-3xl py-6 '>My all items {allProducts.length} </p>
             <div>
                 <Table striped={true}>
                     <Table.Head>
@@ -53,19 +82,20 @@ const MyAllProduct = () => {
                             name
                         </Table.HeadCell>
                         <Table.HeadCell>
-                            email
+                            Appearance
                         </Table.HeadCell>
                         <Table.HeadCell>
                             join date
                         </Table.HeadCell>
                         <Table.HeadCell>
-                            types
+                            Category
+                        </Table.HeadCell>
+                        <Table.HeadCell>
+                            Ads.
                         </Table.HeadCell>
                         <Table.HeadCell>
                             delete
-                            <span className="sr-only text-red-500">
-                                Edit
-                            </span>
+
                         </Table.HeadCell>
                     </Table.Head>
                     {
@@ -87,7 +117,21 @@ const MyAllProduct = () => {
                                     {product.types}
                                 </Table.Cell>
                                 <Table.Cell>
-                                {/* {
+
+
+                                    {
+                                        product.ads === 'ads' ? (
+                                            <p>Live</p>
+                                        ) :
+                                            <button
+
+                                                onClick={() => handleAdvertise(product._id)}
+                                                className=" text-blue-600 hover:underline btn lg:btn-xs   text-white"
+                                            >
+                                                Ads.
+                                            </button>
+                                    }
+                                    {/* {
                                 product.role?
                                 (  
                                     product.ads?
@@ -104,22 +148,18 @@ const MyAllProduct = () => {
                             } */}
                                 </Table.Cell>
                                 <Table.Cell>
-                                  {
-                                    product.ads ==='ads' ?(
-                                        <p>Live</p>
-                                    ):
-                                    <button
-
-                                    onClick={() => handleAdvertise(product._id)}
-                                    className=" text-blue-600 hover:underline btn lg:btn-xs   text-white"
-                                >
-                                    Ads.
-                                </button>
-                                  }
+                                    <Table.Cell>
+                                        <button
+                                            onClick={() => handleDelete(product._id)}
+                                            className='btn btn-xs bg-red-500'>Delete</button>
+                                    </Table.Cell>
                                 </Table.Cell>
+
+
+
                             </Table.Row>
 
-                        
+
 
 
                         </Table.Body>)
