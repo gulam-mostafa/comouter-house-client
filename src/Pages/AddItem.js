@@ -235,7 +235,7 @@ const AddItem = () => {
                     />
                 </div>
                 <div>
-                    <div className="mb-2 block">
+                    <div className="mb-2 block hidden">
                         <Label
                             htmlFor="total"
                             value=" Total Item "
@@ -243,6 +243,7 @@ const AddItem = () => {
                         />
                     </div>
                     <TextInput
+                    className='hidden'
                         name="total"
                         type="number"
                         defaultValue={'2'}
