@@ -98,7 +98,7 @@ console.log(createUserEmail)
                
               })
               .then(() => {
-                // navigate('/home')
+                /// navigate('/home')
               })
               .catch(err => console.log(err))
             const user = result.user;
