@@ -5,7 +5,7 @@ const useSeller = email => {
     const [isSellerLoading, setIsSellerLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users/Seller/${email}`,{
+            fetch(`http://192.168.1.103:5000/users/Seller/${email}`,{
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }

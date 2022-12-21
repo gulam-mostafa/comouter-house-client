@@ -4,6 +4,8 @@ import { AuthContext } from '../Components/Context/AuthProvider';
 import useAdmin from '../Components/Hooks/useAdmin';
 import useSeller from '../Components/Hooks/UseSeller';
 import { useTitle } from '../Components/Hooks/useTitle';
+import Loading from '../Components/Loading';
+import AllBuyer from './AllBuyer';
 import AllSeller from './AllSeller';
 import MyAllProduct from './MyAllProduct';
 import MyOrder from './MyOrder';
@@ -20,8 +22,10 @@ const Dashboard = () => {
            <h2 className='text-center text-xl'>My Dashboard</h2>
 
          {
-            !isAdmin && !isSeller && 
+            
+               !isAdmin && !isSeller && 
             <MyOrder></MyOrder>
+           
          }
          {
             !isAdmin && isSeller && 
@@ -29,7 +33,7 @@ const Dashboard = () => {
          }
          {
             isAdmin && 
-           <AllSeller></AllSeller>
+          <AllSeller></AllSeller>
          }
         </div>
     );

@@ -82,7 +82,7 @@ console.log(createUserEmail)
             
             const users =  { name, email, password, account, createdAt: new Date().toISOString(), photoURL: data?.data?.display_url };
 
-            fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users', {
+            fetch('http://192.168.1.103:5000/users', {
               method: 'POST',
               headers: {
                 "content-type": "application/json"
@@ -151,7 +151,7 @@ console.log(createUserEmail)
   }
   const saveUser = (displayName, email, account) => {
     const user = { displayName, email, account }
-    fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users', {
+    fetch('http://192.168.1.103:5000/users', {
       method: 'POST',
       headers: {
         "content-type": "application/json"

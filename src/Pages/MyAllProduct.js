@@ -12,7 +12,7 @@ const MyAllProduct = () => {
         queryKey: ['allProducts'],
 
         queryFn: async () => {
-            const res = await fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/myallproducts?email=${user.email}`, {
+            const res = await fetch(`http://192.168.1.103:5000/myallproducts?email=${user.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -24,7 +24,7 @@ const MyAllProduct = () => {
     })
 
     const handleAdvertise = id => {
-        fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/items/ad/${id}`, {
+        fetch(`http://192.168.1.103:5000/items/ad/${id}`, {
 
             method: "PUT",
         })
@@ -45,7 +45,7 @@ const MyAllProduct = () => {
     const handleDelete = id => {
         const sureDelete = window.confirm("Are Your Sure, you want delete")
         if (sureDelete) {
-            fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/items/delete/${id}`,
+            fetch(`http://192.168.1.103:5000/items/delete/${id}`,
                 {
                     method: "DELETE"
                 })

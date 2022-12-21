@@ -19,7 +19,7 @@ const CheckOutForm = ({ orders }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/create-payment-intent", {
+    fetch("http://192.168.1.103:5000/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -87,7 +87,7 @@ const CheckOutForm = ({ orders }) => {
 
       // console.log(payment)
 
-      fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/payments', {
+      fetch('http://192.168.1.103:5000/payments', {
         method: 'PUT',
         headers: {
           'content-type': 'application/json',

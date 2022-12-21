@@ -18,7 +18,7 @@ const Subitem = () => {
     const [item, setItem] = useState({});
     // const [loading, setLoading] = useState(true)
     // useEffect(() => {
-    //     fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/items/${types}`)
+    //     fetch(`http://192.168.1.103:5000/items/${types}`)
     //         .then(res => res.json())
     //         .then(data => {
     //             setItems(data)
@@ -29,7 +29,7 @@ const Subitem = () => {
     const { data: products = [], refetch, isLoading } = useQuery({
         queryKey: ['products', types],
         queryFn: async () => {
-            const res = await fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/items/${types}`,{
+            const res = await fetch(`http://192.168.1.103:5000/items/${types}`,{
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }

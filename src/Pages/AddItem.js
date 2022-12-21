@@ -22,7 +22,7 @@ const AddItem = () => {
         queryKey: ['selleruser'],
 
         queryFn: async () => {
-            const res = await fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users/email?email=${user?.email}`);
+            const res = await fetch(`http://192.168.1.103:5000/users/email?email=${user?.email}`);
             const data = await res.json();
 
             return data;
@@ -75,7 +75,7 @@ const AddItem = () => {
                     }
 
                     // console.log(addItem)
-                    fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/items', {
+                    fetch('http://192.168.1.103:5000/items', {
                         method: 'POST',
                         headers: {
                             "content-type": "application/json"

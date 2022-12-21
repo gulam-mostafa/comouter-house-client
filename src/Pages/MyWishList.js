@@ -12,7 +12,7 @@ const MyWishList = () => {
     // console.log(orders.length)
 
     useEffect(() => {
-        fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/wish?email=${user?.email}`, {
+        fetch(`http://192.168.1.103:5000/wish?email=${user?.email}`, {
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }

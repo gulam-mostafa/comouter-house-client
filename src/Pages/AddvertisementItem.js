@@ -13,7 +13,7 @@ const AddvertisementItem = () => {
         queryKey: ['ads'],
 
         queryFn: async () => {
-            const res = await fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/itemsads?ads=ads`,{
+            const res = await fetch(`http://192.168.1.103:5000/itemsads?ads=ads`,{
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }

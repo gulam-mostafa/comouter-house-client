@@ -38,7 +38,7 @@ export const Routes = createBrowserRouter([
             {
                 path: '/home',
                 element: <Home></Home>,
-                loader: () => fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/category', {
+                loader: () => fetch('http://192.168.1.103:5000/category', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -63,7 +63,7 @@ export const Routes = createBrowserRouter([
             {
                 path: '/subcategory/:id',
                 element: <SubCategory></SubCategory>,
-                loader: ({ params }) => fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/items/${params.id}`, {
+                loader: ({ params }) => fetch(`http://192.168.1.103:5000/items/${params.id}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -84,7 +84,7 @@ export const Routes = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PriveteRouter><DashboardLayoyt></DashboardLayoyt></PriveteRouter>,
-        loader: () => fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users', {
+        loader: () => fetch('http://192.168.1.103:5000/users', {
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
@@ -101,7 +101,7 @@ export const Routes = createBrowserRouter([
             {
                 path: '/dashboard/allseller',
                 element: <AdminRoute><AllSeller></AllSeller></AdminRoute>,
-                loader: () => fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users', {
+                loader: () => fetch('http://192.168.1.103:5000/users', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -110,7 +110,7 @@ export const Routes = createBrowserRouter([
             {
                 path: '/dashboard/allbuyer',
                 element: <AdminRoute><AllBuyer></AllBuyer></AdminRoute>,
-                loader: () => fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users', {
+                loader: () => fetch('http://192.168.1.103:5000/users', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -119,7 +119,7 @@ export const Routes = createBrowserRouter([
             {
                 path: '/dashboard/reported',
                 element: <AdminRoute><ReportedItem></ReportedItem></AdminRoute>,
-                loader: () => fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users', {
+                loader: () => fetch('http://192.168.1.103:5000/users', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -148,7 +148,7 @@ export const Routes = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/orders/${params.id}`, {
+                loader: ({ params }) => fetch(`http://192.168.1.103:5000/orders/${params.id}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }

@@ -11,7 +11,7 @@ const MyBuyer = () => {
 
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(`https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/orders/mybuyer?sellermail=${user?.email}`,{
+            const res = await fetch(`http://192.168.1.103:5000/orders/mybuyer?sellermail=${user?.email}`,{
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
